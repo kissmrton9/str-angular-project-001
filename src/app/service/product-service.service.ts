@@ -113,4 +113,4 @@ const data:IProduct[] = [{id:1,catId:2,name:"Back to the Future",description:"un
 {id:99,catId:1,name:"Haunting in Connecticut 2: Ghosts of Georgia, The",description:"recontextualize plug-and-play markets",image:"Etiam.gif",price:8750,stock:18,featured:false,active:false},
 {id:100,catId:3,name:"The Bloody Olive",description:"unleash next-generation bandwidth",image:"VolutpatSapien.jpeg",price:1417,stock:26,featured:false,active:false}];
 
-const list = new ProductServiceService(data);
+export const list = new ProductServiceService(data);
