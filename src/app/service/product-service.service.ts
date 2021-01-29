@@ -9,7 +9,7 @@ import { IProduct } from '../model/product';
 export class ProductServiceService {
 
   constructor(data:Array<Partial<IProduct>>) {
-    data.map(product_data => new Product(product_data));
+    return(data.map(product_data => new Product(product_data)));
   }
 }
 const data:IProduct[] = [{id:1,catId:2,name:"Back to the Future",description:"unleash sexy e-business",image:"SitAmetEros.tiff",price:9601,stock:84,featured:true,active:true},
