@@ -10,10 +10,9 @@ import { list } from '../../service/product-service.service';
 export class HomeComponent implements OnInit {
 
   //products: Product[] = this.productService.data;
-
+  products = list;
   //constructor(private productService: ProductServiceService) {
   //}
-  products=list;
 
   ngOnInit(): void {
   }
