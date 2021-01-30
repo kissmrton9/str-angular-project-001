@@ -18,7 +18,7 @@ import { ProductCardComponent } from './common/product-card/product-card.compone
     Cat02Component,
     HomeComponent,
     ProductPagerComponent,
-    ProductCardComponent
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,
