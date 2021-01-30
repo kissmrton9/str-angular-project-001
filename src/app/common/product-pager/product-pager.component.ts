@@ -10,12 +10,29 @@ export class ProductPagerComponent implements OnInit {
 
   @Input() products: Product[] = [];
   productsForDisplay: Product[] = [];
+  index: number = 0;
 
   constructor() {
   }
 
   ngOnInit(): void {
     this.productsForDisplay = this.products.slice(0, 5);
+  }
+
+  scrollLeft(): void {
+    if (this.index !== 0) {
+      console.log('left');
+      this.index--;
+      this.productsForDisplay = this.products.slice(this.index, this.index + 5);
+    }
+  }
+
+  scrollRight(): void {
+    if (this.index !== this.products.length - 5) {
+      console.log('right');
+      this.index++;
+      this.productsForDisplay = this.products.slice(this.index, this.index + 5);
+    }
   }
 
 }
