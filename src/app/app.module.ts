@@ -7,8 +7,9 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { Cat01Component } from './page/cat01/cat01.component';
 import { Cat02Component } from './page/cat02/cat02.component';
 import { HomeComponent } from './page/home/home.component';
-import { ProductPagerComponent } from './common/product-pager/product-pager.component';
+//import { list } from 'src/app/service/product-service.service';
 import { ProductCardComponent } from './common/product-card/product-card.component';
+import { ProductListComponent } from './common/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,8 @@ import { ProductCardComponent } from './common/product-card/product-card.compone
     Cat01Component,
     Cat02Component,
     HomeComponent,
-    ProductPagerComponent,
     ProductCardComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
