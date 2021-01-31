@@ -1,0 +1,17 @@
+<div class="card">
+  <img src="assets/img/{{ product.image }}" class="card-img-top" alt="Kép erről a termékről: {{ product.name }}">
+  <div class="card-body">
+    <h5 class="card-title">Név: {{ product.name }}</h5>
+    <p class="card-text">Leírás: {{ product.description }}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Készlet: {{ product.stock }} darab</li>
+    <li class="list-group-item">Ár: {{ product.price }} Ft</li>
+  </ul>
+  <!--     
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+ -->
+</div>
