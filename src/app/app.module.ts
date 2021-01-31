@@ -11,6 +11,7 @@ import { HomeComponent } from './page/home/home.component';
 import { ProductCardComponent } from './common/product-card/product-card.component';
 import { ProductPagerComponent } from './common/product-pager/product-pager.component';
 import { ProductListComponent } from './common/product-list/product-list.component';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductListComponent } from './common/product-list/product-list.compone
     HomeComponent,
     ProductCardComponent,
     ProductPagerComponent,
-    ProductListComponent
+    ProductListComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

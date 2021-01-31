@@ -8,11 +8,17 @@ import { IProduct } from 'src/app/model/product';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  
+
   @Input() products: IProduct[] = [];
+  phrase: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  onChangePhrase(event: Event): void {
+    this.phrase = (event.target as HTMLInputElement).value;
+  }
 }
