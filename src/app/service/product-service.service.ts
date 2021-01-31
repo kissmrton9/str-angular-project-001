@@ -117,6 +117,15 @@ let data: IProduct[] = [{ id: 1, catId: 2, name: "Back to the Future", descripti
 ];
 
 const modif: Array<Partial<IProduct>> = [
+  {id:2,catId:1,image:"02.jpg",name:"Simmer"},
+  {id:3,catId:1,image:"03.jpg",name:"Twist"},
+  {id:7,catId:1,image:"07.jpg",name:"Outside The Wire"},
+  {id:9,catId:1,image:"09.jpg",name:"Royal Rumble"},
+  {id:11,catId:1,image:"11.jpg",name:"R. I. A."},
+  {id:14,catId:1,image:"14.jpg",name:"Judas And The Black Messiah"},
+  {id:15,catId:1,image:"15.jpg",name:"Caged"},
+  {id:18,catId:1,image:"18.jpg",name:"Battle In Space"},
+  {id:19,catId:1,image:"19.jpg",name:"Respite"},
   { id: 20, catId: 0, image: "20.jpg", name: "Agent Revelation" },
   { id: 25, catId: 0, image: "25.jpg", name: "Six Minutes To Midnight" },
   { id: 30, catId: 0, image: "30.jpg", name: "The Rifleman" },
@@ -160,12 +169,12 @@ const modif: Array<Partial<IProduct>> = [
   { id: 41, catId: 2, image: "41.jpg", name: "On-Site" }
 ];
 
-// data = data.map(el=>{
-//   el.catId = modif[el.id].catId;
-//   el.image = modif[el.id].image;
-//   el.name = modif[el.id].name;
-//   return el
-// });
+data = data.map(el=>{
+  el.catId = modif[el.id].catId;
+  el.image = modif[el.id].image;
+  el.name = modif[el.id].name;
+  return el
+});
 
 export const list = data.map(el => { if (Math.random() > 0.9) el.discount = true; return el });
 
