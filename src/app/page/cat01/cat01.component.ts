@@ -11,6 +11,8 @@ import { list } from '../../service/product-service.service';
 export class Cat01Component implements OnInit {
 
   products: IProduct[] = list.filter(value => value.catId === 1);
+  featuredProducts: IProduct[] = list.filter(value => value.catId === 1 && value.featured);
+
   constructor() { }
 
   ngOnInit(): void {

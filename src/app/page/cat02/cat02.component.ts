@@ -10,6 +10,7 @@ import { list } from 'src/app/service/product-service.service';
 export class Cat02Component implements OnInit {
 
   products: IProduct[] = list.filter(value => value.catId === 2);
+  featuredProducts: IProduct[] = list.filter(value => value.catId === 2 && value.featured);
   constructor() { }
 
   ngOnInit(): void {
