@@ -8,6 +8,7 @@ export interface IProduct {
     stock: number;
     featured: boolean;
     active: boolean;
+    discount: boolean;
 
     // getId(): string;
     // getCatId(): string;
@@ -30,7 +31,7 @@ export interface IProduct {
     // setActive(value: boolean): void;
 }
 
-export class Product implements IProduct{
+export class Product implements IProduct {
     id: number;
     catId: number;
     name: string;
@@ -40,8 +41,9 @@ export class Product implements IProduct{
     stock: number;
     featured: boolean;
     active: boolean;
+    discount: boolean;
 
-    constructor(product: Partial<IProduct>){
+    constructor(product: Partial<IProduct>) {
         Object.keys(product).forEach(property => {
             this[property] = product[property];
         });
