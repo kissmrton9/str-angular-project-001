@@ -12,7 +12,7 @@
                         {{ selectedKeyForSearch }}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a *ngFor="let key of keys" class="dropdown-item" href="#searchRow"
+                        <a *ngFor="let key of keys" class="dropdown-item" [routerLink]=""
                             (click)="selectKeyForSearch(key)">{{
                             key }}</a>
                     </div>
@@ -31,13 +31,13 @@
                         {{ sortKey }}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-sort">
-                        <a *ngFor="let key of keys" class="dropdown-item" href="#searchRow"
+                        <a *ngFor="let key of keys" class="dropdown-item" [routerLink]=""
                             (click)="selectColumnForSort(key)">{{ key }}</a>
                     </div>
                 </div>
             </div>
             <div class="col-1">
-                <a href="#searchRow" (click)="changeSortAscend()"><i
+                <a [routerLink]="" (click)="changeSortAscend()"><i
                         class="fa fa-arrow-{{ sortAscend?'up':'down' }} fa-2x" aria-hidden="true"></i>
                 </a>
             </div>
