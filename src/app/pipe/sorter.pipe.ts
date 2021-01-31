@@ -11,15 +11,15 @@ export class SorterPipe implements PipeTransform {
    * @param key {string} - az objektum kulcs, ami alapján rendez.
    * @returns {any[]} - a kulcs alapján rendezett tömb.
    */
-  transform(value: any[], key: string): any[] {
+  transform(value: any[], key: string, isAscending: boolean): any[] {
 
     /**
      * FELADAT!
      * Ellenőrzés: ha a value nem tömb, vagy nincs megadva a key,
      * térj vissza a value változóval.
      */
-
-    if(typeof(value)==='undefined' || !Array.isArray(value) || typeof(key)==='undefined'){return value};
+    console.log(isAscending);
+    if (typeof (value) === 'undefined' || !Array.isArray(value) || typeof (key) === 'undefined') { return value };
 
     /**
      * FELADAT!
@@ -30,12 +30,14 @@ export class SorterPipe implements PipeTransform {
      * 3. Térj vissza a két string localeCompare metódus által visszaadott
      *  összehasonlításának az eredményével.
      */
-    return value.sort((a:any,b:any)=>SorterPipe.compare(a[key],b[key]));
+    return value.sort((a: any, b: any) => SorterPipe.compare(a[key], b[key], isAscending));
   }
-  static compare(a:any,b:any):number {
-    if(typeof(a)==='number' && typeof(b)==='number'){
-      return a-b}
-    else return a.toString().toLocaleLowerCase().localeCompare(b.toString().toLocaleLowerCase());
+  static compare(a: any, b: any, isAscending): number {
+    if (typeof (a) === 'number' && typeof (b) === 'number') {
+      return isAscending ? a - b : b - a;
+    }
+    else return isAscending ? a.toString().toLocaleLowerCase().localeCompare(b.toString().toLocaleLowerCase()) :
+      b.toString().toLocaleLowerCase().localeCompare(a.toString().toLocaleLowerCase());
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import { Product } from 'src/app/model/product';
+import { IProduct } from 'src/app/model/product';
 import { list } from 'src/app/service/product-service.service';
 
 @Component({
@@ -9,9 +9,8 @@ import { list } from 'src/app/service/product-service.service';
 })
 export class Cat02Component implements OnInit {
 
-  products = list;
-
-  //constructor(private productService: ProductServiceService) { }
+  products: IProduct[] = list.filter(value => value.catId === 2);
+  constructor() { }
 
   ngOnInit(): void {
   }
