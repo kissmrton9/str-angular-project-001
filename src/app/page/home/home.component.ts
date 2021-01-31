@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //import { IProduct } from 'src/app/model/product';
-import { list, listByAction, listByFeatured } from '../../service/product-service.service';
+import { list } from '../../service/product-service.service';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit {
   //constructor(private productService: ProductServiceService) {
   //}
   products = list;
-  featuredProducts = listByFeatured(true);
-  actionProducts = listByAction(true);
+  featuredProducts = list;
+  discountProducts = list;
 
   ngOnInit(): void {
   }

@@ -8,6 +8,8 @@ export interface IProduct {
     stock: number;
     featured: boolean;
     active: boolean;
+    
+    [others: string]: any;
 
     // getId(): string;
     // getCatId(): string;
