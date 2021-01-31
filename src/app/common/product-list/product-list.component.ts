@@ -13,6 +13,8 @@ export class ProductListComponent implements OnInit {
   phrase: string = '';
   keys: string[];
   selectedKeyForSearch: string = 'name';
+  sortKey: string = 'name';
+  sortAscend: boolean = true;
 
   constructor() { }
 
@@ -27,5 +29,13 @@ export class ProductListComponent implements OnInit {
 
   selectKeyForSearch(key: string): void {
     this.selectedKeyForSearch = key;
+  }
+
+  selectColumnForSort(column: string): void {
+    this.sortKey = column;
+  }
+
+  changeSortAscend(): void {
+    this.sortAscend = !this.sortAscend;
   }
 }
