@@ -1,5 +1,6 @@
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-//import { IProduct } from 'src/app/model/product';
+import { IProduct } from 'src/app/model/product';
 import { list } from '../../service/product-service.service';
 
 @Component({
@@ -9,13 +10,13 @@ import { list } from '../../service/product-service.service';
 })
 export class HomeComponent implements OnInit {
 
-  //products: Product[] = this.productService.data;
 
-  //constructor(private productService: ProductServiceService) {
-  //}
-  products = list;
-  featuredProducts = list;
-  discountProducts = list;
+  products: IProduct[] = list;
+  constructor() { }
+
+  // products = list;
+  featuredProducts = this.products.filter(value => value.featured);
+  actionProducts = this.products.filter(value => value.discount);
 
   ngOnInit(): void {
   }
