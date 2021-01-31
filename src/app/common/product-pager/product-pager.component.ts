@@ -19,7 +19,7 @@ export class ProductPagerComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    this.numberOfCard = this.innerWidth < 768 ? 1 : this.innerWidth < 1200 ? 3 : 5;
+    this.numberOfCard = this.innerWidth < 768 ? 1 : this.innerWidth < 1200 ? 2 : 5;
     this.productsForDisplay = this.products.slice(0, this.numberOfCard);
   }
 
