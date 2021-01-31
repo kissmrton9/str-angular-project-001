@@ -113,4 +113,13 @@ const data:IProduct[] = [{id:1,catId:2,name:"Back to the Future",description:"un
 {id:99,catId:1,name:"Haunting in Connecticut 2: Ghosts of Georgia, The",description:"recontextualize plug-and-play markets",image:"Etiam.gif",price:8750,stock:18,featured:false,active:false,discount:(Math.random()>0.9)},
 {id:100,catId:3,name:"The Bloody Olive",description:"unleash next-generation bandwidth",image:"VolutpatSapien.jpeg",price:1417,stock:26,featured:false,active:false}];
 
+  constructor(data: Array<Partial<IProduct>>) {
+    return (data.map(product_data => new Product(product_data)));
+  }
+}
+
+
 export const list = new ProductServiceService(data);
+export const listById = (categoryId: number) => new ProductServiceService(data.filter(value => value.catId === categoryId));
+export const listByFeatured = (featured: boolean) => new ProductServiceService(data.filter(value => value.featured === featured));
+export const listByAction = (featured: boolean) => new ProductServiceService(data.filter(value => value.featured === featured));
