@@ -11,14 +11,21 @@ export class ProductListComponent implements OnInit {
 
   @Input() products: IProduct[] = [];
   phrase: string = '';
+  keys: string[];
+  selectedKeyForSearch: string = 'name';
 
   constructor() { }
 
   ngOnInit(): void {
+    this.keys = Object.keys(this.products[0]);
   }
 
 
   onChangePhrase(event: Event): void {
     this.phrase = (event.target as HTMLInputElement).value;
+  }
+
+  selectKeyForSearch(key: string): void {
+    this.selectedKeyForSearch = key;
   }
 }
