@@ -31,8 +31,6 @@ testreszabásának. Amit csak lehet, a komponensek saját stíluslapjába írjat
 ## Alap osztályok
 Mielőtt hozzákezdenétek a komponensek generálásához, készítsétek el a 
 szükséges oszályokat és szolgáltatásokat (service).
--------------------------------------------
-MÁR MEGVAN:
 - Product osztály: id, catId, name, description, image, price, stock, featured, active
 - Category osztály: id, name, description
 > _Ezeket a model almappába érdemes elhelyezni az app mappán belül, hogy egy helyen legyenek._
@@ -40,9 +38,6 @@ MÁR MEGVAN:
 `ng g service service/kutya`
 > A ProductService tartalmazzon egy list nevű változót, ami a termékek tömbje legyen.  
 > Ebben szerepeljen random adatokkal legalább 50 termék, segítség: `https://mockaroo.com`
-
-EDDIG
--------------------------------------------
 
 ## Home component
 Amint látjátok, a fő komponenseket már elkészítettem és a menüt is beállítottam.
