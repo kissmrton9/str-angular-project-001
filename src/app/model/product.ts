@@ -1,10 +1,11 @@
+//export const notActive: string = 'jelenleg nem kapható';
 export interface IProduct {
     id: number;
     catId: number;
     name: string;
     description: string;
     image: string;
-    price: number;
+    price: number; // | 'typeof notActive';
     stock: number;
     featured: boolean;
     active: boolean;
@@ -39,7 +40,7 @@ export class Product implements IProduct {
     name: string;
     description: string;
     image: string;
-    price: number;
+    price: number; // | 'typeof notActive';
     stock: number;
     featured: boolean;
     active: boolean;
