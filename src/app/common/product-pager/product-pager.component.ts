@@ -19,7 +19,7 @@ export class ProductPagerComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    this.numberOfCard = this.innerWidth < 768 ? 1 : this.innerWidth < 1200 ? 2 : 5;
+    this.numberOfCard = this.innerWidth < 768 ? 1 : this.innerWidth < 992 ? 2 : 5;
     this.productsForDisplay = this.products.slice(0, this.numberOfCard);
   }
 
@@ -30,18 +30,23 @@ export class ProductPagerComponent implements OnInit {
 
   scrollLeft(): void {
     if (this.index !== 0) {
-      console.log('left');
       this.index--;
       this.productsForDisplay = this.products.slice(this.index, this.index + this.numberOfCard);
     }
   }
 
   scrollRight(): void {
-    if (this.index !== this.products.length - this.numberOfCard) {
-      console.log('right');
+    if (this.index !== this.products.length - this.numberOfCard && this.index + this.numberOfCard < this.products.length) {
       this.index++;
       this.productsForDisplay = this.products.slice(this.index, this.index + this.numberOfCard);
     }
+  }
+
+  isDisableLeft(): string {
+    return this.index === 0 ? 'scrollArrow--disabled' : '';
+  }
+  isDisableRight(): string {
+    return this.index === this.products.length - this.numberOfCard || this.index + this.numberOfCard >= this.products.length ? 'scrollArrow--disabled' : '';
   }
 
 }
