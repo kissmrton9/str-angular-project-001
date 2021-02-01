@@ -47,7 +47,7 @@
 <div class="d-flex flex-column mt-3">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-2 offset-lg-2 mw-100 p-0 ml-lg-1 overflow-hidden"
+            <div class="col-12 col-md-6 col-lg-2 mx-auto mw-100 p-0 ml-lg-1 overflow-hidden"
                 *ngFor="let product of products | filter:phrase:selectedKeyForSearch | sorter:sortKey:sortAscend">
                 <app-product-card [product]="product"></app-product-card>
             </div>
