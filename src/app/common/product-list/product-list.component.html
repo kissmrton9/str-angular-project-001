@@ -2,7 +2,7 @@
 <div class="container mb-3">
     <div class="row" id="searchRow">
         <div class="my-1 col-4 col-md-3 col-lg-2 d-flex align-items-center justify-content-end">
-            <span class="h6 mb-0">Keresés itt:</span>
+            <span class="h6 mb-0">Search:</span>
         </div>
         <div class="my-1 col-8 col-md-3 col-lg-2">
             <div class="dropdown">
@@ -11,7 +11,7 @@
                     {{ selectedKeyForSearch }}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a *ngFor="let key of keys" class="dropdown-item" [routerLink]=""
+                    <a *ngFor="let key of keys| productPropertyFilter:'search'" class="dropdown-item" [routerLink]=""
                         (click)="selectKeyForSearch(key)">{{
                         key }}</a>
                 </div>
@@ -23,7 +23,7 @@
 
 
         <div class="my-1 col-4 col-md-8 col-lg-1 d-flex align-items-center  justify-content-end">
-            <span class="h6 mb-0">Rendezés:</span>
+            <span class="h6 mb-0">Order:</span>
         </div>
         <div class="my-1 col-6 col-md-3 col-lg-2">
             <div class="dropdown">
@@ -32,7 +32,7 @@
                     {{ sortKey }}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-sort">
-                    <a *ngFor="let key of keys" class="dropdown-item" [routerLink]=""
+                    <a *ngFor="let key of keys | productPropertyFilter:'order'" class="dropdown-item" [routerLink]=""
                         (click)="selectColumnForSort(key)">{{ key }}</a>
                 </div>
             </div>
