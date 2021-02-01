@@ -18,7 +18,6 @@ export class SorterPipe implements PipeTransform {
      * Ellenőrzés: ha a value nem tömb, vagy nincs megadva a key,
      * térj vissza a value változóval.
      */
-    console.log(isAscending);
     if (typeof (value) === 'undefined' || !Array.isArray(value) || typeof (key) === 'undefined') { return value };
 
     /**

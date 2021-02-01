@@ -12,7 +12,7 @@
                         {{ selectedKeyForSearch }}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a *ngFor="let key of keys" class="dropdown-item" href="#searchRow"
+                        <a *ngFor="let key of keys" class="dropdown-item" [routerLink]=""
                             (click)="selectKeyForSearch(key)">{{
                             key }}</a>
                     </div>
@@ -31,27 +31,28 @@
                         {{ sortKey }}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-sort">
-                        <a *ngFor="let key of keys" class="dropdown-item" href="#searchRow"
+                        <a *ngFor="let key of keys" class="dropdown-item" [routerLink]=""
                             (click)="selectColumnForSort(key)">{{ key }}</a>
                     </div>
                 </div>
             </div>
             <div class="col-1">
-                <a href="#searchRow" (click)="changeSortAscend()"><i
+                <a [routerLink]="" (click)="changeSortAscend()"><i
                         class="fa fa-arrow-{{ sortAscend?'up':'down' }} fa-2x" aria-hidden="true"></i>
                 </a>
             </div>
             <div class="col-8">
             </div>
         </div>
-        <div class="d-flex flex-column mt-3">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-md-6 col-lg-2 offset-lg-1 ml-lg-1"
-                        *ngFor="let product of products | filter:phrase:selectedKeyForSearch | sorter:sortKey:sortAscend">
-                        <app-product-card [product]="product"></app-product-card>
-                    </div>
+    </div>
+    <div class="d-flex flex-column mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-2 offset-lg-1 ml-lg-1"
+                    *ngFor="let product of products | filter:phrase:selectedKeyForSearch | sorter:sortKey:sortAscend">
+                    <app-product-card [product]="product"></app-product-card>
                 </div>
             </div>
         </div>
     </div>
+</div>
