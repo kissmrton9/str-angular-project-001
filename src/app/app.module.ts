@@ -14,6 +14,7 @@ import { ProductPagerComponent } from './common/product-pager/product-pager.comp
 import { ProductListComponent } from './common/product-list/product-list.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { SorterPipe } from './pipe/sorter.pipe';
+import { ProductPropertyFilterPipe } from './pipe/product-property-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SorterPipe } from './pipe/sorter.pipe';
     ProductListComponent,
     FilterPipe,
     SorterPipe,
-    Cat03Component
+    Cat03Component,
+    ProductPropertyFilterPipe
   ],
   imports: [
     BrowserModule,
