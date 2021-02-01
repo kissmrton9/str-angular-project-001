@@ -12,13 +12,21 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a *ngFor="let key of keys| productPropertyFilter:'search'" class="dropdown-item" [routerLink]=""
-                        (click)="selectKeyForSearch(key)">{{
+                        (click)="selectKeyForSearch(key);filterName.value = '';from.value = '';to.value = ''
+                        ">{{
                         key }}</a>
                 </div>
             </div>
         </div>
-        <div class="mb-2 mt-1 col-12 col-md-6 col-lg-4">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" (keyup)="onChangePhrase($event)">
+        <div class="mb-2 mt-1 col-12 col-md-6 col-lg-4 {{selectedKeyForSearch==='price'?'hide':''}}">
+            <input class="form-control mr-sm-2" #filterName type="text" placeholder="Search"
+                (keyup)="onChangePhrase($event)">
+        </div>
+        <div class="mb-2 mt-1 col-6 col-md-3 col-lg-2 {{selectedKeyForSearch==='price'?'':'hide'}}">
+            <input class="form-control mr-sm-2" #from type="text" placeholder="From" (keyup)="onChangePhrase($event)">
+        </div>
+        <div class="mb-2 mt-1 col-6 col-md-3 col-lg-2 {{selectedKeyForSearch==='price'?'':'hide'}}">
+            <input class="form-control mr-sm-2" #to type="text" placeholder="To" (keyup)="onChangePhrase2($event)">
         </div>
 
 
@@ -48,7 +56,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-2 mx-auto mw-100 p-0 ml-lg-1 overflow-hidden"
-                *ngFor="let product of products | filter:phrase:selectedKeyForSearch | sorter:sortKey:sortAscend">
+                *ngFor="let product of products | filter:phrase:selectedKeyForSearch:phrase2 | sorter:sortKey:sortAscend">
                 <app-product-card [product]="product"></app-product-card>
             </div>
         </div>

@@ -11,6 +11,7 @@ export class ProductListComponent implements OnInit {
 
   @Input() products: IProduct[] = [];
   phrase: string = '';
+  phrase2: string = '';
   keys: string[];
   selectedKeyForSearch: string = 'name';
   sortKey: string = 'name';
@@ -24,11 +25,20 @@ export class ProductListComponent implements OnInit {
 
 
   onChangePhrase(event: Event): void {
+
     this.phrase = (event.target as HTMLInputElement).value;
   }
+  onChangePhrase2(event: Event): void {
+    this.phrase2 = (event.target as HTMLInputElement).value;
+  }
+
 
   selectKeyForSearch(key: string): void {
     this.selectedKeyForSearch = key;
+    if (this.selectedKeyForSearch !== 'price') {
+      this.phrase = '';
+      this.phrase2 = '';
+    }
   }
 
   selectColumnForSort(column: string): void {
