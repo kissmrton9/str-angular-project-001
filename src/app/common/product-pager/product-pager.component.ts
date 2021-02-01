@@ -30,7 +30,6 @@ export class ProductPagerComponent implements OnInit {
 
   scrollLeft(): void {
     if (this.index !== 0) {
-      console.log('left');
       this.index--;
       this.productsForDisplay = this.products.slice(this.index, this.index + this.numberOfCard);
     }
@@ -38,7 +37,6 @@ export class ProductPagerComponent implements OnInit {
 
   scrollRight(): void {
     if (this.index !== this.products.length - this.numberOfCard) {
-      console.log('right');
       this.index++;
       this.productsForDisplay = this.products.slice(this.index, this.index + this.numberOfCard);
     }
