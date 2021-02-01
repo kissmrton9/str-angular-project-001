@@ -11,20 +11,15 @@ export class FilterPipe implements PipeTransform {
       return value;
     }
 
-    console.log('jelen1');
     if (key === 'price') {
       if (!isNaN(parseInt(phrase)) || !isNaN(parseInt(phrase2))) {
-        console.log('jelen2');
         if (!isNaN(parseInt(phrase)) && !isNaN(parseInt(phrase2))) {
-          console.log('ketto');
           return value.filter(item => parseInt(phrase) <= parseInt(item[key]) && parseInt(phrase2) >= parseInt(item[key]));
         }
         if (!isNaN(parseInt(phrase))) {
-          console.log('from');
           return value.filter(item => parseInt(phrase) <= parseInt(item[key]));
         }
         if (!isNaN(parseInt(phrase2))) {
-          console.log('to');
           return value.filter(item => parseInt(phrase2) >= parseInt(item[key]));
         }
       }
