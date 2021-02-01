@@ -208,7 +208,7 @@ const newdesc:Array<string> = [
   'A warrior has a day to rescue an eight foot man-eating bunny. The circumstances are destabilised by a storm.',
   'A bored wizard and a boxer team up - after their identity is stolen - to stop the ambush that threatens the vital convoy.',
   'An undertaker has limited time to find the evidence.',
-  'A disorganised loser rejects an icy dog. The story is broughtto a close by a rescue.',
+  'A disorganised loser rejects an icy dog. The story is brought to a close by a rescue.',
   'An aristocrat runs away with an evil priest. The plot is complicated by a return.',
   'An animal trainer interviews a demoralised pensioner.',
   'An arachnophobic pirate undermines an intellectual businesswoman.',
@@ -231,12 +231,12 @@ data = data.map(el=>{
 });
 
 while(
-  data.filter((el)=>el.discount && el.catId === 0).length < 6 ||
-  data.filter((el)=>el.discount && el.catId === 1).length < 6 ||
-  data.filter((el)=>el.discount && el.catId === 2).length < 6 ||
-  data.filter((el)=>el.featured && el.catId === 0).length < 6 ||
-  data.filter((el)=>el.featured && el.catId === 1).length < 6 ||
-  data.filter((el)=>el.featured && el.catId === 2).length < 6
+  data.filter((el)=>el.discount && el.catId === 0).length < 5 ||
+  data.filter((el)=>el.discount && el.catId === 1).length < 5 ||
+  data.filter((el)=>el.discount && el.catId === 2).length < 5 ||
+  data.filter((el)=>el.featured && el.catId === 0).length < 5 ||
+  data.filter((el)=>el.featured && el.catId === 1).length < 5 ||
+  data.filter((el)=>el.featured && el.catId === 2).length < 5
 ){
   data = data
     .map(el => { 
