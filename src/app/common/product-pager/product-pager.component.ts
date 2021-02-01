@@ -30,18 +30,23 @@ export class ProductPagerComponent implements OnInit {
 
   scrollLeft(): void {
     if (this.index !== 0) {
-      console.log('left');
       this.index--;
       this.productsForDisplay = this.products.slice(this.index, this.index + this.numberOfCard);
     }
   }
 
   scrollRight(): void {
-    if (this.index !== this.products.length - this.numberOfCard) {
-      console.log('right');
+    if (this.index !== this.products.length - this.numberOfCard && this.index + this.numberOfCard < this.products.length) {
       this.index++;
       this.productsForDisplay = this.products.slice(this.index, this.index + this.numberOfCard);
     }
+  }
+
+  isDisableLeft(): string {
+    return this.index === 0 ? 'scrollArrow--disabled' : '';
+  }
+  isDisableRight(): string {
+    return this.index === this.products.length - this.numberOfCard || this.index + this.numberOfCard >= this.products.length ? 'scrollArrow--disabled' : '';
   }
 
 }
