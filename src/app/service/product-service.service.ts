@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Product } from '../model/product';
-import { IProduct } from '../model/product';
+import { Product, IProduct } from '../model/product';
 
 @Injectable({
   providedIn: 'root'
@@ -169,15 +168,94 @@ const modif: Array<Partial<IProduct>> = [
   { id: 41, catId: 2, image: "41.jpg", name: "On-Site" }
 ];
 
+const newdesc:Array<string> = [
+  'A ninja has 24 hours to gain the assistance of a group of stoned hippies. The situation is complicated by a pregnancy.',
+  'When they are strapped to a bomb, a party of elderly ladies go on a riverboat trip. The situation is straightened out by a battle.',
+  'An archeologist has a day to lose a fortune.',
+  'A sick taxi driver and a werewolf combine forces - after a team-mate is injured - to disarm a bomb.',
+  'An archeologist runs away from a conservative gangster.',
+  'A TV anchor is framed for a conspiracy. Events are made critical by redundancy.',
+  'A cheerleader muddles briefcases with a psychotic horsewoman. The circumstances are straightened out by a legacy.',
+  'When they wake up in a strange place, a wagon train of settlers go on a road trip.',
+  'When they stumble into a conspiracy, a coachload of drag queens go on a bender.',
+  'An inspector battles with an incompetent detective. The plot is made critical by a secret revealed.',
+  'A chain-smoking cowboy has a day to find an antidote to a deadly virus. Events are concluded by a meeting.',
+  'A psychiatrist fights with a straight talking rock band. The situation is started by money going missing.',
+  'When they are sent into exile, a church choir go on a road trip. The circumstances are begun by an invasion.',
+  'A loser has limited time to claim their birthright. The situation is reduced to chaos by the outbreak of war.',
+  'After a warm-hearted personal assistant uses extortion to obtain an out of the way railway station they are pursued by the Women\'s Institute.',
+  'When they fail a drugs test, six dwarves go on to better things. The plot is made difficult by a meeting.',
+  'A sexy salesman trades a possessed toy. The story is complicated by an accident.',
+  'A priest runs away from an attractive taxi driver.',
+  'A son buys an ancient scroll. Events are made more complex by the outbreak of war.',
+  'When their identity is stolen, a car load of lost hoodlums trade guns for a lighthouse.',
+  'A manipulative shop owner and a girl get together - after their father dies unexpectedly - to organise a musical. The circumstances are brought to a close by the discovery of the missing papers.',
+  'A lawyer and an immature missionary combine forces to trap an out of the way railway station.',
+  'A blind salesman has 24 hours to trade guns for a bankrupt holiday resort.',
+  'When they are strapped to a bomb, an asylum full of inmates go on a bizarre shopping trip. The circumstances are split wide open by a battle.',
+  'When a team-mate is injured, a shipfull of pirates reclaim orphans. The plot is encumbered by a meeting.',
+  'An archeologist has a day to prepare orphans.',
+  'A likable private detective has 24 hours to recapture a genie in a lamp.',
+  'An heroic pilot has 24 hours to sell a million dollar jewel. Events are resolved by the King\'s return.',
+  'A pilot has limited time to find themselves responsible for an orphaned killer whale. The circumstances are started by theoutbreak of war.',
+  'An always cheerful funeral director hires a demoralised butler. Events are made critical by the imminent destruction ofthe base.',
+  'A secret agent is ostracised for a crime.',
+  'A manager and an intellectual gang combine forces to go looking for a box of minature monsters. The plot is begun by the arrival of the sherrif.',
+  'A disabled highschool-dropout is involved in a revenge plot.',
+  'After a warm-hearted reporter borrows a haunted castle they are pursued by a convent of nuns. Events are begun by plague.',
+  'A despotic cowboy is the victim of a conspiracy.',
+  'When a prisoner escapes, a party of scientists go on the rampage. Events are brought to a close by an accident.',
+  'A warrior has a day to rescue an eight foot man-eating bunny. The circumstances are destabilised by a storm.',
+  'A bored wizard and a boxer team up - after their identity is stolen - to stop the ambush that threatens the vital convoy.',
+  'An undertaker has limited time to find the evidence.',
+  'A disorganised loser rejects an icy dog. The story is broughtto a close by a rescue.',
+  'An aristocrat runs away with an evil priest. The plot is complicated by a return.',
+  'An animal trainer interviews a demoralised pensioner.',
+  'An arachnophobic pirate undermines an intellectual businesswoman.',
+  'A cynical school girl has a day to find an antidote to a deadly virus.',
+  'A policeman has limited time to go looking for an ice cream franchise.',
+  'An agent has limited time to raise money for a giant egg.',
+  'After a naïve nun steals a genie in a lamp they are pursued by a group of stranded aliens. The circumstances are destabilised by a confession.',
+  'A farmer inherits a radio-active rabbit.',
+  'When they stumble into a conspiracy, an asylum full of inmates find money to buy the worst restaurant ever.',
+  'When a girl is kidnapped, a faithful dog and it\'s puppies go on a killing spree.'
+];
+
 data = data.map(el=>{
   el.catId = modif[el.id].catId;
   el.image = modif[el.id].image;
   el.name = modif[el.id].name;
+  el.active = true;
+  el.description = newdesc[el.id];
   return el
 });
 
-export const list = data.map(el => { if (Math.random() > 0.9) el.discount = true; return el });
+while(
+  data.filter((el)=>el.discount && el.catId === 0).length < 6 ||
+  data.filter((el)=>el.discount && el.catId === 1).length < 6 ||
+  data.filter((el)=>el.discount && el.catId === 2).length < 6 ||
+  data.filter((el)=>el.featured && el.catId === 0).length < 6 ||
+  data.filter((el)=>el.featured && el.catId === 1).length < 6 ||
+  data.filter((el)=>el.featured && el.catId === 2).length < 6
+){
+  data = data
+    .map(el => { 
+      el.active = true;
+      el.discount = (Math.random() > 0.5); 
+      el.featured = (Math.random() > 0.5); 
+      if (Math.random() > 0.9) {
+        el.active = false;
+        el.discount = false;
+        el.featured = false;
+        // el.stock = 0;
+        //Ha többször fut le a while ciklus, lehet, hogy aktív termékekből is kifogy a készlet...
+        // el.price = 'typeof notActive';
+      } 
+      return el })
+    };
+data = data.map(el => {el.stock = el.active ? el.stock : 0; return el});
 
+export const list = data;
 //export const list = new ProductServiceService(data);
 // export const listById = (categoryId: number) => list.filter(value => value.catId === categoryId);
 // export const listByFeatured = (featured: boolean) => list.filter(value => value.featured);
