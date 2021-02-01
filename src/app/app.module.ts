@@ -7,6 +7,12 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { Cat01Component } from './page/cat01/cat01.component';
 import { Cat02Component } from './page/cat02/cat02.component';
 import { HomeComponent } from './page/home/home.component';
+//import { list } from 'src/app/service/product-service.service';
+import { ProductCardComponent } from './common/product-card/product-card.component';
+import { ProductPagerComponent } from './common/product-pager/product-pager.component';
+import { ProductListComponent } from './common/product-list/product-list.component';
+import { FilterPipe } from './pipe/filter.pipe';
+import { SorterPipe } from './pipe/sorter.pipe';
 
 @NgModule({
   declarations: [
@@ -14,7 +20,12 @@ import { HomeComponent } from './page/home/home.component';
     NavigationComponent,
     Cat01Component,
     Cat02Component,
-    HomeComponent
+    HomeComponent,
+    ProductCardComponent,
+    ProductPagerComponent,
+    ProductListComponent,
+    FilterPipe,
+    SorterPipe
   ],
   imports: [
     BrowserModule,
