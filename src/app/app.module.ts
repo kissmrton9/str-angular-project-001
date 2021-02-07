@@ -18,6 +18,7 @@ import { ProductPropertyFilterPipe } from './pipe/product-property-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './page/admin/admin.component';
 import { DataEditorComponent } from './common/data-editor/data-editor.component';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DataEditorComponent } from './common/data-editor/data-editor.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [ProductServiceService],
   bootstrap: [AppComponent]
