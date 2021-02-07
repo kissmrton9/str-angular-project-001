@@ -18,6 +18,7 @@ export class ConfigService {
     { text: 'Action', link: '/cat01' },
     { text: 'Family', link: '/cat02' },
     { text: 'Horror', link: '/cat03' },
+    { text: 'Admin', link: '/admin' },
   ];
 
   constructor() { }

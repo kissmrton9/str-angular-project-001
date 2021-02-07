@@ -1,7 +1,8 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from 'src/app/model/product';
-import { list } from '../../service/product-service.service';
+import { IProduct, Product } from 'src/app/model/product';
+import { ProductServiceService } from '../../service/product-service.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +12,16 @@ import { list } from '../../service/product-service.service';
 export class HomeComponent implements OnInit {
 
 
-  products: IProduct[] = list;
-  constructor() { }
+  products$: Observable<IProduct[]> = this.productService.getAll();
+  featuredProducts$: Observable<IProduct[]> = this.productService.getAll();
+  actionProducts$: Observable<IProduct[]> = this.productService.getAll();
+  constructor(
+    private productService: ProductServiceService,
+  ) { }
 
   // products = list;
-  featuredProducts = this.products.filter(value => value.featured);
-  actionProducts = this.products.filter(value => value.discount);
+  // featuredProducts = this.products.filter(value => value.featured);
+  // actionProducts = this.products.filter(value => value.discount);
 
   ngOnInit(): void {
   }
