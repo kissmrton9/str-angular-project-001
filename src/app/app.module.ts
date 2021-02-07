@@ -8,13 +8,17 @@ import { Cat01Component } from './page/cat01/cat01.component';
 import { Cat02Component } from './page/cat02/cat02.component';
 import { Cat03Component } from './page/cat03/cat03.component';
 import { HomeComponent } from './page/home/home.component';
-//import { list } from 'src/app/service/product-service.service';
+import { ProductServiceService } from 'src/app/service/product-service.service';
 import { ProductCardComponent } from './common/product-card/product-card.component';
 import { ProductPagerComponent } from './common/product-pager/product-pager.component';
 import { ProductListComponent } from './common/product-list/product-list.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { SorterPipe } from './pipe/sorter.pipe';
 import { ProductPropertyFilterPipe } from './pipe/product-property-filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './page/admin/admin.component';
+import { DataEditorComponent } from './common/data-editor/data-editor.component';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -29,13 +33,17 @@ import { ProductPropertyFilterPipe } from './pipe/product-property-filter.pipe';
     FilterPipe,
     SorterPipe,
     Cat03Component,
-    ProductPropertyFilterPipe
+    ProductPropertyFilterPipe,
+    AdminComponent,
+    DataEditorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ProductServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

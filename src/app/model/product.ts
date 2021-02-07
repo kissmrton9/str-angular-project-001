@@ -51,6 +51,8 @@ export class Product implements IProduct {
             this[property] = product[property];
         });
     }
+
+
     // getId(): string{
     //     return(this.id);
     // };

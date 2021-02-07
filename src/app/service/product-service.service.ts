@@ -1,18 +1,86 @@
+import { Input, OnChanges } from '@angular/core';
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 import { Product, IProduct } from '../model/product';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductServiceService {
 
-  constructor(data: Array<IProduct>) {
-    return (data.map(product_data => new Product(product_data)));
+  constructor(private http: HttpClient) { };
+  private jsonUrl: string = 'http://localhost:3000/list';
+
+  getAll(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(this.jsonUrl);
   }
+  getOne(product: number | string | Partial<IProduct>): Observable<IProduct> {
+    try {
+      const id =
+        typeof product === 'number' ? product :
+          typeof product === 'string' ? product :
+            product.id;
+      return this.http.get<IProduct>(`${this.jsonUrl}/${id}`);
+    }
+    catch (e) {
+      console.log(`Failed to get product ${product}: 'id' wasn't given`);
+    }
+  }
+  add(product: Partial<IProduct>): Observable<IProduct> {
+    console.log(this.jsonUrl);
+    return this.http.post<IProduct>(this.jsonUrl, product);
+  }
+  remove(product: number | string | Partial<IProduct>): Observable<IProduct> {
+    try {
+      const id =
+        typeof product === 'number' ? product :
+          typeof product === 'string' ? product :
+            product.id;
+      return this.http.delete<IProduct>(`${this.jsonUrl}/${id}`);
+    }
+    catch (e) {
+      console.log(`Failed to remove product ${product}: 'id' wasn't given`);
+    }
+  }
+  update(product: Product): Observable<IProduct> {
+    return this.http.put<IProduct>(`${this.jsonUrl}/${product.id}`, product);
+  }
+
+  // constructor(data: Array<IProduct>) {
+  //   return (data.map(product_data => new Product(product_data)));
+  // }
 }
 
-let data: IProduct[] = [{ id: 1, catId: 2, name: "Back to the Future", description: "unleash sexy e-business", image: "SitAmetEros.tiff", price: 9601, stock: 84, featured: true, active: true, discount: false },
+// export class ProductService implements OnChanges {
+
+//   constructor(private productService: ProductServiceService){}
+//   productsObservable: Observable<IProduct[]> = this.productService.getAll();
+//   products: IProduct[];
+//   featuredProducts: IProduct[];
+//   actionProducts: IProduct[];
+//   showProducts(){
+//     this.productsObservable
+//       .subscribe((data: IProduct[]) => {
+//         //console.log(data);
+//         this.products = data;
+//         this.featuredProducts = data.filter(value => value.featured);
+//         this.actionProducts = data.filter(value => value.discount);
+//         //console.log(this.featuredProducts);
+//   });
+//   //console.log(this.products);
+//   }
+//   done = this.showProducts();
+//   ngOnChanges(): void {
+//     this.showProducts();
+//   }
+// }
+
+
+
+
+/* let data: IProduct[] = [{ id: 1, catId: 2, name: "Back to the Future", description: "unleash sexy e-business", image: "SitAmetEros.tiff", price: 9601, stock: 84, featured: true, active: true, discount: false },
 { id: 2, catId: 3, name: "Flesh Gordon", description: "revolutionize virtual action-items", image: "Ultrices.jpeg", price: 5466, stock: 28, featured: false, active: false, discount: false },
 { id: 3, catId: 1, name: "She", description: "strategize robust infomediaries", image: "LobortisSapienSapien.jpeg", price: 6822, stock: 36, featured: false, active: false, discount: false },
 { id: 4, catId: 3, name: "Bill Burr: Let It Go", description: "incentivize transparent users", image: "Turpis.png", price: 3040, stock: 58, featured: true, active: true, discount: false },
@@ -115,147 +183,56 @@ let data: IProduct[] = [{ id: 1, catId: 2, name: "Back to the Future", descripti
   // {id:100,catId:3,name:"The Bloody Olive",description:"unleash next-generation bandwidth",image:"VolutpatSapien.jpeg",price:1417,stock:26,featured:false,active:false}
 ];
 
-const modif: Array<Partial<IProduct>> = [
-  { id: 2, catId: 0, image: "02.jpg", name: "Simmer" }, 
-  { id: 3, catId: 0, image: "03.jpg", name: "Twist" }, 
-  { id: 7, catId: 0, image: "07.jpg", name: "Outside The Wire" }, 
-  { id: 9, catId: 0, image: "09.jpg", name: "Royal Rumble" }, 
-  { id: 11, catId: 0, image: "11.jpg", name: "R. I. A." }, 
-  { id: 14, catId: 0, image: "14.jpg", name: "Judas And The Black Messiah" }, 
-  { id: 15, catId: 0, image: "15.jpg", name: "Caged" }, 
-  { id: 18, catId: 0, image: "18.jpg", name: "Battle In Space" }, 
-  { id: 19, catId: 0, image: "19.jpg", name: "Respite" },
-  { id: 20, catId: 0, image: "20.jpg", name: "Agent Revelation" },
-  { id: 25, catId: 0, image: "25.jpg", name: "Six Minutes To Midnight" },
-  { id: 30, catId: 0, image: "30.jpg", name: "The Rifleman" },
-  { id: 33, catId: 0, image: "33.jpg", name: "Redemption Day " },
-  { id: 37, catId: 0, image: "37.jpg", name: "American Dream" },
-  { id: 38, catId: 0, image: "38.jpg", name: "Brothers By Blood" },
-  { id: 44, catId: 0, image: "44.jpg", name: "Unfollower" },
-  { id: 46, catId: 0, image: "46.jpg", name: "Algorithm: Bliss" },
-  { id: 47, catId: 0, image: "47.jpg", name: "Goodbye Butterfly" },
-  { id: 50, catId: 0, image: "50.jpg", name: "Average Joe" },
-  { id: 1, catId: 1, image: "01.jpg", name: "Batman – Soul Of The Dragon" },
-  { id: 5, catId: 1, image: "05.jpg", name: "Magic Max" },
-  { id: 8, catId: 1, image: "08.jpg", name: "The Right One" },
-  { id: 12, catId: 1, image: "12.jpg", name: "Our Friend" },
-  { id: 13, catId: 1, image: "13.jpg", name: "Salt N Pepa" },
-  { id: 16, catId: 1, image: "16.jpg", name: "No Man’s Land" },
-  { id: 17, catId: 1, image: "17.jpg", name: "Truth To Power" },
-  { id: 21, catId: 1, image: "21.jpg", name: "A Cold Hard Truth" },
-  { id: 24, catId: 1, image: "24.jpg", name: "Asphalt Burning" },
-  { id: 27, catId: 1, image: "27.jpg", name: "Haymaker" },
-  { id: 29, catId: 1, image: "29.jpg", name: "Locked Down" },
-  { id: 34, catId: 1, image: "34.jpg", name: "The United States Vs. Billie Holiday" },
-  { id: 35, catId: 1, image: "35.jpg", name: "Fake Famous" },
-  { id: 36, catId: 1, image: "36.jpg", name: "Rundfunk Jachterwachter" },
-  { id: 40, catId: 1, image: "40.jpg", name: "The Great Escapists" },
-  { id: 42, catId: 1, image: "42.jpg", name: "Finding Ohana" },
-  { id: 43, catId: 1, image: "43.jpg", name: "More Than Miyagi" },
-  { id: 45, catId: 1, image: "45.jpg", name: "Beware Of Dog" },
-  { id: 48, catId: 1, image: "48.jpg", name: "Dara Of Jasenovac" },
-  { id: 49, catId: 1, image: "49.jpg", name: "Kitty Mammas" },
-  { id: 4, catId: 2, image: "04.jpg", name: "Hunted" },
-  { id: 6, catId: 2, image: "06.jpg", name: "Wrong Turn" },
-  { id: 10, catId: 2, image: "10.jpg", name: "Bloody Hell" },
-  { id: 22, catId: 2, image: "22.jpg", name: "Psycho Goreman" },
-  { id: 23, catId: 2, image: "23.jpg", name: "The 100 Candles Game" },
-  { id: 26, catId: 2, image: "26.jpg", name: "Don’t Tell A Soul" },
-  { id: 28, catId: 2, image: "28.jpg", name: "Dracula Sir" },
-  { id: 31, catId: 2, image: "31.jpg", name: "The Rope Curse 2" },
-  { id: 32, catId: 2, image: "32.jpg", name: "Butchers" },
-  { id: 39, catId: 2, image: "39.jpg", name: "Dead In The Water" },
-  { id: 41, catId: 2, image: "41.jpg", name: "On-Site" }
-];
+  create(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.apiUrl, product);
+  }
+  remove(product: Product): Observable<Product> {
+    return this.http.delete<Product>(`${this.apiUrl}/${product.id}`);
+  }
+  update(product: Product): Observable<Product> {
+    return this.http.patch<Product>(`${this.apiUrl}/${product.id}`, product);
+  }
+}
 
-const newdesc:Array<string> = [
-  'A ninja has 24 hours to gain the assistance of a group of stoned hippies. The situation is complicated by a pregnancy.',
-  'When they are strapped to a bomb, a party of elderly ladies go on a riverboat trip. The situation is straightened out by a battle.',
-  'An archeologist has a day to lose a fortune.',
-  'A sick taxi driver and a werewolf combine forces - after a team-mate is injured - to disarm a bomb.',
-  'An archeologist runs away from a conservative gangster.',
-  'A TV anchor is framed for a conspiracy. Events are made critical by redundancy.',
-  'A cheerleader muddles briefcases with a psychotic horsewoman. The circumstances are straightened out by a legacy.',
-  'When they wake up in a strange place, a wagon train of settlers go on a road trip.',
-  'When they stumble into a conspiracy, a coachload of drag queens go on a bender.',
-  'An inspector battles with an incompetent detective. The plot is made critical by a secret revealed.',
-  'A chain-smoking cowboy has a day to find an antidote to a deadly virus. Events are concluded by a meeting.',
-  'A psychiatrist fights with a straight talking rock band. The situation is started by money going missing.',
-  'When they are sent into exile, a church choir go on a road trip. The circumstances are begun by an invasion.',
-  'A loser has limited time to claim their birthright. The situation is reduced to chaos by the outbreak of war.',
-  'After a warm-hearted personal assistant uses extortion to obtain an out of the way railway station they are pursued by the Women\'s Institute.',
-  'When they fail a drugs test, six dwarves go on to better things. The plot is made difficult by a meeting.',
-  'A sexy salesman trades a possessed toy. The story is complicated by an accident.',
-  'A priest runs away from an attractive taxi driver.',
-  'A son buys an ancient scroll. Events are made more complex by the outbreak of war.',
-  'When their identity is stolen, a car load of lost hoodlums trade guns for a lighthouse.',
-  'A manipulative shop owner and a girl get together - after their father dies unexpectedly - to organise a musical. The circumstances are brought to a close by the discovery of the missing papers.',
-  'A lawyer and an immature missionary combine forces to trap an out of the way railway station.',
-  'A blind salesman has 24 hours to trade guns for a bankrupt holiday resort.',
-  'When they are strapped to a bomb, an asylum full of inmates go on a bizarre shopping trip. The circumstances are split wide open by a battle.',
-  'When a team-mate is injured, a shipfull of pirates reclaim orphans. The plot is encumbered by a meeting.',
-  'An archeologist has a day to prepare orphans.',
-  'A likable private detective has 24 hours to recapture a genie in a lamp.',
-  'An heroic pilot has 24 hours to sell a million dollar jewel. Events are resolved by the King\'s return.',
-  'A pilot has limited time to find themselves responsible for an orphaned killer whale. The circumstances are started by theoutbreak of war.',
-  'An always cheerful funeral director hires a demoralised butler. Events are made critical by the imminent destruction ofthe base.',
-  'A secret agent is ostracised for a crime.',
-  'A manager and an intellectual gang combine forces to go looking for a box of minature monsters. The plot is begun by the arrival of the sherrif.',
-  'A disabled highschool-dropout is involved in a revenge plot.',
-  'After a warm-hearted reporter borrows a haunted castle they are pursued by a convent of nuns. Events are begun by plague.',
-  'A despotic cowboy is the victim of a conspiracy.',
-  'When a prisoner escapes, a party of scientists go on the rampage. Events are brought to a close by an accident.',
-  'A warrior has a day to rescue an eight foot man-eating bunny. The circumstances are destabilised by a storm.',
-  'A bored wizard and a boxer team up - after their identity is stolen - to stop the ambush that threatens the vital convoy.',
-  'An undertaker has limited time to find the evidence.',
-  'A disorganised loser rejects an icy dog. The story is brought to a close by a rescue.',
-  'An aristocrat runs away with an evil priest. The plot is complicated by a return.',
-  'An animal trainer interviews a demoralised pensioner.',
-  'An arachnophobic pirate undermines an intellectual businesswoman.',
-  'A cynical school girl has a day to find an antidote to a deadly virus.',
-  'A policeman has limited time to go looking for an ice cream franchise.',
-  'An agent has limited time to raise money for a giant egg.',
-  'After a naïve nun steals a genie in a lamp they are pursued by a group of stranded aliens. The circumstances are destabilised by a confession.',
-  'A farmer inherits a radio-active rabbit.',
-  'When they stumble into a conspiracy, an asylum full of inmates find money to buy the worst restaurant ever.',
-  'When a girl is kidnapped, a faithful dog and it\'s puppies go on a killing spree.'
-];
 
-data = data.map(el=>{
-  el.catId = modif[el.id].catId;
-  el.image = modif[el.id].image;
-  el.name = modif[el.id].name;
-  el.active = true;
-  el.description = newdesc[el.id];
-  return el
-});
+// data = data.map(el => {
+//   el.catId = modif[el.id].catId;
+//   el.image = modif[el.id].image;
+//   el.name = modif[el.id].name;
+//   el.active = true;
+//   el.description = newdesc[el.id];
+//   return el
+// });
 
-while(
-  data.filter((el)=>el.discount && el.catId === 0).length < 5 ||
-  data.filter((el)=>el.discount && el.catId === 1).length < 5 ||
-  data.filter((el)=>el.discount && el.catId === 2).length < 5 ||
-  data.filter((el)=>el.featured && el.catId === 0).length < 5 ||
-  data.filter((el)=>el.featured && el.catId === 1).length < 5 ||
-  data.filter((el)=>el.featured && el.catId === 2).length < 5
-){
-  data = data
-    .map(el => { 
-      el.active = true;
-      el.discount = (Math.random() > 0.5); 
-      el.featured = (Math.random() > 0.5); 
-      if (Math.random() > 0.9) {
-        el.active = false;
-        el.discount = false;
-        el.featured = false;
-        // el.stock = 0;
-        //Ha többször fut le a while ciklus, lehet, hogy aktív termékekből is kifogy a készlet...
-        // el.price = 'typeof notActive';
-      } 
-      return el })
-    };
-data = data.map(el => {el.stock = el.active ? el.stock : 0; return el});
+// while (
+//   data.filter((el) => el.discount && el.catId === 0).length < 5 ||
+//   data.filter((el) => el.discount && el.catId === 1).length < 5 ||
+//   data.filter((el) => el.discount && el.catId === 2).length < 5 ||
+//   data.filter((el) => el.featured && el.catId === 0).length < 5 ||
+//   data.filter((el) => el.featured && el.catId === 1).length < 5 ||
+//   data.filter((el) => el.featured && el.catId === 2).length < 5
+// ) {
+//   data = data
+//     .map(el => {
+//       el.active = true;
+//       el.discount = (Math.random() > 0.5);
+//       el.featured = (Math.random() > 0.5);
+//       if (Math.random() > 0.9) {
+//         el.active = false;
+//         el.discount = false;
+//         el.featured = false;
+//         // el.stock = 0;
+//         //Ha többször fut le a while ciklus, lehet, hogy aktív termékekből is kifogy a készlet...
+//         // el.price = 'typeof notActive';
+//       }
+//       return el
+//     })
+// };
+// data = data.map(el => { el.stock = el.active ? el.stock : 0; return el });
+
 
 export const list = data;
+ */
 //export const list = new ProductServiceService(data);
 // export const listById = (categoryId: number) => list.filter(value => value.catId === categoryId);
 // export const listByFeatured = (featured: boolean) => list.filter(value => value.featured);
