@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/model/product';
+import { ConfigService } from 'src/app/service/config.service';
 //import { list as products, ProductServiceService } from 'src/app/service/product-service.service';
+import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-product-list',
@@ -12,15 +14,14 @@ export class ProductListComponent implements OnInit {
   @Input() products: IProduct[] = [];
   phrase: string = '';
   phrase2: string = '';
-  keys: string[];
+  keys: string[] = this.config.tableCols.map(item => item.text);
   selectedKeyForSearch: string = 'name';
   sortKey: string = 'name';
   sortAscend: boolean = true;
 
-  constructor() { }
+  constructor(private config: ConfigService,) { }
 
   ngOnInit(): void {
-    this.keys = Object.keys(this.products[0]);
   }
 
 
