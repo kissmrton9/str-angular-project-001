@@ -28,17 +28,19 @@ export class ConfigService {
     { text: 'Admin', link: '/admin' },
   ];
 
+
+  // ne írd át a textet!!!!
   tableCols: ITableCol[] = [
-    { key: 'id', text: '#', editable: false },
-    { key: 'catId', text: 'CategoryId', editable: true },
-    { key: 'name', text: 'Name', editable: true },
-    { key: 'description', text: 'Description', editable: true },
-    { key: 'image', text: 'Image', editable: true },
-    { key: 'price', text: 'Price', editable: true },
-    { key: 'stock', text: 'Stock', editable: true },
-    { key: 'featured', text: 'Featured', editable: true },
-    { key: 'active', text: 'Active', editable: true },
-    { key: 'discount', text: 'Discount', editable: true }
+    { key: 'id', text: 'id', editable: false },
+    { key: 'catId', text: 'catId', editable: true },
+    { key: 'name', text: 'name', editable: true },
+    { key: 'description', text: 'description', editable: true },
+    { key: 'image', text: 'image', editable: true },
+    { key: 'price', text: 'price', editable: true },
+    { key: 'stock', text: 'stock', editable: true },
+    { key: 'featured', text: 'featured', editable: true },
+    { key: 'active', text: 'active', editable: true },
+    { key: 'discount', text: 'discount', editable: true }
   ];
 
   constructor() { }

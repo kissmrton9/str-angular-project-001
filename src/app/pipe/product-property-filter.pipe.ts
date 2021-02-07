@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ProductPropertyFilterPipe implements PipeTransform {
 
-  searchByProperties: string[] = ['Name', 'Description', 'Price'];
-  orderByProperties: string[] = ['Name', 'Description', 'Price', 'Featured', 'Discount'];
+  searchByProperties: string[] = ['name', 'description', 'price'];
+  orderByProperties: string[] = ['name', 'description', 'price', 'featured', 'discount'];
 
   transform(properties: string[], filterFunction: string) {
     switch (filterFunction) {

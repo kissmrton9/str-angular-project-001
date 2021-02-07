@@ -14,8 +14,16 @@ import { ConfigService } from '../../service/config.service';
 export class DataEditorComponent {
 
 
+  selectedKeyForSearch: string = 'name';
   productList$: Observable<Product[]> = this.productService.getAll();
   cols: ITableCol[] = this.config.tableCols;
+
+  phrase: string = '';
+  phrase2: string = '';
+  keys: string[] = this.config.tableCols.map(item => item.text);
+  sortKey: string = 'name';
+  sortAscend: boolean = true;
+
 
   constructor(
     private productService: ProductServiceService,
@@ -31,6 +39,32 @@ export class DataEditorComponent {
     this.productService.remove(product).subscribe(
       () => console.log('deleted')
     );
+  }
+
+
+  onChangePhrase(event: Event): void {
+
+    this.phrase = (event.target as HTMLInputElement).value;
+  }
+  onChangePhrase2(event: Event): void {
+    this.phrase2 = (event.target as HTMLInputElement).value;
+  }
+
+
+  selectKeyForSearch(key: string): void {
+    this.selectedKeyForSearch = key;
+    if (this.selectedKeyForSearch !== 'price') {
+      this.phrase = '';
+      this.phrase2 = '';
+    }
+  }
+
+  selectColumnForSort(column: string): void {
+    this.sortKey = column;
+  }
+
+  changeSortAscend(): void {
+    this.sortAscend = !this.sortAscend;
   }
 
 }
