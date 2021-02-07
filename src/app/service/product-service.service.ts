@@ -1,18 +1,86 @@
+import { Input, OnChanges } from '@angular/core';
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 import { Product, IProduct } from '../model/product';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductServiceService {
 
-  constructor(data: Array<IProduct>) {
-    return (data.map(product_data => new Product(product_data)));
+  constructor(private http:HttpClient){};
+  private jsonUrl:string = 'http://localhost:3000/list';
+
+  getAll():Observable<IProduct[]>{
+    return this.http.get<IProduct[]>(this.jsonUrl);
   }
+  getOne(product: number | string | Partial<IProduct>):Observable<IProduct>{
+    try{
+      const id =
+        typeof product === 'number' ? product :
+        typeof product === 'string' ? product :
+        product.id;
+        return this.http.get<IProduct>(`${this.jsonUrl}/${id}`);
+    }
+    catch(e){
+      console.log(`Failed to get product ${product}: 'id' wasn't given`);
+    }
+  }
+  add(product: Partial<IProduct>):Observable<IProduct>{
+    console.log(this.jsonUrl);
+    return this.http.post<IProduct>(this.jsonUrl,product);
+  }
+  remove(product: number | string | Partial<IProduct>):Observable<IProduct>{
+    try{
+      const id =
+        typeof product === 'number' ? product :
+        typeof product === 'string' ? product :
+        product.id;
+        return this.http.delete<IProduct>(`${this.jsonUrl}/${id}`);
+    }
+    catch(e){
+      console.log(`Failed to remove product ${product}: 'id' wasn't given`);
+    }
+  }
+  update(product: Product): Observable<IProduct>{
+      return this.http.put<IProduct>( `${this.jsonUrl}/${product.id}`, product );
+  }
+
+  // constructor(data: Array<IProduct>) {
+  //   return (data.map(product_data => new Product(product_data)));
+  // }
 }
 
-let data: IProduct[] = [{ id: 1, catId: 2, name: "Back to the Future", description: "unleash sexy e-business", image: "SitAmetEros.tiff", price: 9601, stock: 84, featured: true, active: true, discount: false },
+// export class ProductService implements OnChanges {
+
+//   constructor(private productService: ProductServiceService){}
+//   productsObservable: Observable<IProduct[]> = this.productService.getAll();
+//   products: IProduct[];
+//   featuredProducts: IProduct[];
+//   actionProducts: IProduct[];
+//   showProducts(){
+//     this.productsObservable
+//       .subscribe((data: IProduct[]) => {
+//         //console.log(data);
+//         this.products = data;
+//         this.featuredProducts = data.filter(value => value.featured);
+//         this.actionProducts = data.filter(value => value.discount);
+//         //console.log(this.featuredProducts);
+//   });
+//   //console.log(this.products);
+//   }
+//   done = this.showProducts();
+//   ngOnChanges(): void {
+//     this.showProducts();
+//   }
+// }
+
+
+
+
+/* let data: IProduct[] = [{ id: 1, catId: 2, name: "Back to the Future", description: "unleash sexy e-business", image: "SitAmetEros.tiff", price: 9601, stock: 84, featured: true, active: true, discount: false },
 { id: 2, catId: 3, name: "Flesh Gordon", description: "revolutionize virtual action-items", image: "Ultrices.jpeg", price: 5466, stock: 28, featured: false, active: false, discount: false },
 { id: 3, catId: 1, name: "She", description: "strategize robust infomediaries", image: "LobortisSapienSapien.jpeg", price: 6822, stock: 36, featured: false, active: false, discount: false },
 { id: 4, catId: 3, name: "Bill Burr: Let It Go", description: "incentivize transparent users", image: "Turpis.png", price: 3040, stock: 58, featured: true, active: true, discount: false },
@@ -255,7 +323,9 @@ while(
     };
 data = data.map(el => {el.stock = el.active ? el.stock : 0; return el});
 
+
 export const list = data;
+ */
 //export const list = new ProductServiceService(data);
 // export const listById = (categoryId: number) => list.filter(value => value.catId === categoryId);
 // export const listByFeatured = (featured: boolean) => list.filter(value => value.featured);
