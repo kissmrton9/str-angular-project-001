@@ -8,7 +8,7 @@ import { Cat01Component } from './page/cat01/cat01.component';
 import { Cat02Component } from './page/cat02/cat02.component';
 import { Cat03Component } from './page/cat03/cat03.component';
 import { HomeComponent } from './page/home/home.component';
-//import { list } from 'src/app/service/product-service.service';
+import { ProductServiceService } from 'src/app/service/product-service.service';
 import { ProductCardComponent } from './common/product-card/product-card.component';
 import { ProductPagerComponent } from './common/product-pager/product-pager.component';
 import { ProductListComponent } from './common/product-list/product-list.component';
@@ -41,7 +41,7 @@ import { DataEditorComponent } from './common/data-editor/data-editor.component'
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ProductServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
