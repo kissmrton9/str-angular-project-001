@@ -29,19 +29,22 @@ export class ConfigService {
   ];
 
 
-  // ne írd át a textet!!!!
   tableCols: ITableCol[] = [
-    { key: 'id', text: 'id', editable: false },
-    { key: 'catId', text: 'catId', editable: true },
-    { key: 'name', text: 'name', editable: true },
-    { key: 'description', text: 'description', editable: true },
-    { key: 'image', text: 'image', editable: true },
-    { key: 'price', text: 'price', editable: true },
-    { key: 'stock', text: 'stock', editable: true },
-    { key: 'featured', text: 'featured', editable: true },
-    { key: 'active', text: 'active', editable: true },
-    { key: 'discount', text: 'discount', editable: true }
+    { key: 'id', text: 'Id', editable: false },
+    { key: 'catId', text: 'Category Id', editable: true },
+    { key: 'name', text: 'Name', editable: true },
+    { key: 'description', text: 'Description', editable: true },
+    { key: 'image', text: 'Image', editable: true },
+    { key: 'price', text: 'Price', editable: true },
+    { key: 'stock', text: 'Stock', editable: true },
+    { key: 'featured', text: 'Featured', editable: true },
+    { key: 'active', text: 'Active', editable: true },
+    { key: 'discount', text: 'Discount', editable: true }
   ];
+
+  searchByProperties: string[] = ['name', 'description', 'price'];
+  orderByProperties: string[] = ['name', 'description', 'price', 'featured', 'discount'];
+
 
   constructor() { }
 }

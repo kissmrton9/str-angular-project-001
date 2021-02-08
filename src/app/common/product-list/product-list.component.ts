@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   @Input() products: IProduct[] = [];
   phrase: string = '';
   phrase2: string = '';
-  keys: string[] = this.config.tableCols.map(item => item.text);
+  keys: string[] = this.config.tableCols.map(item => item.key);
   selectedKeyForSearch: string = 'name';
   sortKey: string = 'name';
   sortAscend: boolean = true;

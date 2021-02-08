@@ -1,20 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ConfigService } from '../service/config.service';
 
 @Pipe({
   name: 'productPropertyFilter'
 })
 export class ProductPropertyFilterPipe implements PipeTransform {
 
-  searchByProperties: string[] = ['name', 'description', 'price'];
-  orderByProperties: string[] = ['name', 'description', 'price', 'featured', 'discount'];
+
+  constructor(private config: ConfigService) { }
 
   transform(properties: string[], filterFunction: string) {
     switch (filterFunction) {
       case 'search':
-        return properties.filter(item => this.searchByProperties.includes(item));
+        return properties.filter(item => this.config.searchByProperties.includes(item));
 
       case 'order':
-        return properties.filter(item => this.orderByProperties.includes(item));
+        return properties.filter(item => this.config.orderByProperties.includes(item));
 
     }
   }
