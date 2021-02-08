@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
 })
 export class HomeComponent implements OnChanges {
 
-  constructor(private productService: ProductServiceService){}
+  constructor(private productService: ProductServiceService) { }
   productsObservable: Observable<IProduct[]> = this.productService.getAll();
   featuredProductsObservable: Observable<IProduct[]> = this.productsObservable.pipe(
     map(products => products.filter(product => product.featured))
