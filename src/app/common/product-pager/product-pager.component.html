@@ -2,13 +2,13 @@
     <div class="container-fluid p-0">
         <div class="row">
             <div class="col-1 p-0 d-flex align-items-center justify-content-center" (click)="scrollLeft()">
-                <i class="fa fa-chevron-circle-left text-info fa-3x {{ isDisableLeft }}" aria-hidden="true"></i>
+                <i class="fa fa-chevron-circle-left text-info fa-3x {{ setDisableLeft() }}" aria-hidden="true"></i>
             </div>
             <div class="col-10 col-md-5 col-lg-2 mw-100 p-0 overflow-hidden" *ngFor="let product of productsForDisplay">
                 <app-product-card [product]="product"></app-product-card>
             </div>
             <div class="col-1 p-0 d-flex align-items-center justify-content-center" (click)="scrollRight()"><i
-                    class="fa fa-chevron-circle-right text-info fa-3x {{ isDisableRight }}" aria-hidden="true"></i>
+                    class="fa fa-chevron-circle-right text-info fa-3x {{ setDisableRight() }}" aria-hidden="true"></i>
             </div>
         </div>
     </div>

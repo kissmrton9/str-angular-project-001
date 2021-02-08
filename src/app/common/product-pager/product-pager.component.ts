@@ -14,15 +14,15 @@ export class ProductPagerComponent implements OnInit, OnChanges {
   innerWidth: number = window.innerWidth;
   numberOfCards: number = this.innerWidth < 768 ? 1 : this.innerWidth < 992 ? 2 : 5;
   numberOfLoadedCards: number = 0;
-  isDisableLeft: string = 'scrollArrow--disabled';
-  isDisableRight: string = 'scrollArrow--disabled';
+  // isDisableLeft: string = 'scrollArrow--disabled';
+  // isDisableRight: string = 'scrollArrow--disabled';
   constructor() {
   }
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.innerWidth = window.innerWidth;
     this.numberOfCards = this.innerWidth < 768 ? 1 : this.innerWidth < 992 ? 2 : 5;
-    if(this.numberOfLoadedCards>=this.numberOfCards){
+    if (this.numberOfLoadedCards >= this.numberOfCards) {
       this.productsForDisplay = this.products.slice(0, this.numberOfCards);
     }
   }
@@ -32,8 +32,8 @@ export class ProductPagerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    this.isDisableLeft = this.setDisableLeft();
-    this.isDisableRight = this.setDisableRight();
+    // this.isDisableLeft = this.setDisableLeft();
+    // this.isDisableRight = this.setDisableRight();
     this.numberOfLoadedCards = this.products ? this.products.length : 0;
     this.onResize();
   }
@@ -46,17 +46,17 @@ export class ProductPagerComponent implements OnInit, OnChanges {
   }
 
   scrollRight(): void {
-    if (this.numberOfLoadedCards>this.numberOfCards && this.index !== this.products.length - this.numberOfCards && this.index + this.numberOfCards < this.products.length) {
+    if (this.numberOfLoadedCards > this.numberOfCards && this.index !== this.products.length - this.numberOfCards && this.index + this.numberOfCards < this.products.length) {
       this.index++;
       this.productsForDisplay = this.products.slice(this.index, this.index + this.numberOfCards);
     }
   }
 
   setDisableLeft(): string {
-    return this.numberOfLoadedCards<=this.numberOfCards || this.index === 0 ? 'scrollArrow--disabled' : '';
+    return this.numberOfLoadedCards <= this.numberOfCards || this.index === 0 ? 'scrollArrow--disabled' : '';
   }
   setDisableRight(): string {
-    return this.numberOfLoadedCards<=this.numberOfCards || this.index === this.products.length - this.numberOfCards || this.index + this.numberOfCards >= this.products.length ? 'scrollArrow--disabled' : '';
+    return this.numberOfLoadedCards <= this.numberOfCards || this.index === this.products.length - this.numberOfCards || this.index + this.numberOfCards >= this.products.length ? 'scrollArrow--disabled' : '';
   }
 
 }
