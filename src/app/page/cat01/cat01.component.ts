@@ -1,6 +1,7 @@
 import { Input, OnChanges } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { IProduct } from 'src/app/model/product';
 import { ProductServiceService } from '../../service/product-service.service';
 
@@ -18,7 +19,8 @@ export class Cat01Component implements OnChanges {
 
 
   constructor(private productService: ProductServiceService) { }
-  productsObservable: Observable<IProduct[]> = this.productService.getAll();
+  productsObservable: Observable<IProduct[]> = this.productService.getAll()
+    .pipe(map(products => products.filter(product => product.catId === 0)));
   products: IProduct[];
   featuredProducts: IProduct[];
   actionProducts: IProduct[];
