@@ -11,6 +11,7 @@ export interface ITableCol {
   key: string;
   text: string;
   editable: boolean;
+  inputType: string;
 }
 
 @Injectable({
@@ -29,19 +30,22 @@ export class ConfigService {
   ];
 
 
-  // ne írd át a textet!!!!
   tableCols: ITableCol[] = [
-    { key: 'id', text: 'id', editable: false },
-    { key: 'catId', text: 'catId', editable: true },
-    { key: 'name', text: 'name', editable: true },
-    { key: 'description', text: 'description', editable: true },
-    { key: 'image', text: 'image', editable: true },
-    { key: 'price', text: 'price', editable: true },
-    { key: 'stock', text: 'stock', editable: true },
-    { key: 'featured', text: 'featured', editable: true },
-    { key: 'active', text: 'active', editable: true },
-    { key: 'discount', text: 'discount', editable: true }
+    { key: 'id', text: 'Id', editable: false, inputType: 'input' },
+    { key: 'catId', text: 'Category Id', editable: true, inputType: 'input' },
+    { key: 'name', text: 'Name', editable: true, inputType: 'input' },
+    { key: 'description', text: 'Description', editable: true, inputType: 'input' },
+    { key: 'image', text: 'Image', editable: true, inputType: 'input' },
+    { key: 'price', text: 'Price', editable: true, inputType: 'input' },
+    { key: 'stock', text: 'Stock', editable: true, inputType: 'input' },
+    { key: 'featured', text: 'Featured', editable: true, inputType: 'checkbox' },
+    { key: 'active', text: 'Active', editable: true, inputType: 'checkbox' },
+    { key: 'discount', text: 'Discount', editable: true, inputType: 'checkbox' }
   ];
+
+  searchByProperties: string[] = ['name', 'description', 'price'];
+  orderByProperties: string[] = ['name', 'description', 'price', 'featured', 'discount'];
+
 
   constructor() { }
 }
