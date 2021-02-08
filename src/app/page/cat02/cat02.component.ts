@@ -1,7 +1,9 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Filter } from 'src/app/model/filter';
 import { IProduct } from 'src/app/model/product';
+import { Sorter } from 'src/app/model/sorter';
 import { ProductServiceService } from '../../service/product-service.service';
 
 @Component({
@@ -14,7 +16,8 @@ export class Cat02Component implements OnChanges {
   // products: IProduct[] = list.filter(value => value.catId === 1);
   // featuredProducts: IProduct[] = list.filter(value => value.catId === 1 && value.featured);
   // constructor() { }
-
+  filter: Filter = new Filter();
+  sorter: Sorter = new Sorter();
 
   constructor(private productService: ProductServiceService) { }
   productsObservable: Observable<IProduct[]> = this.productService.getAll()
