@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/model/product';
 import { ProductServiceService } from '../../service/product-service.service';
 import { Observable } from 'rxjs';
+import { Filter } from 'src/app/model/filter';
+import { Sorter } from 'src/app/model/sorter';
 //import { AppComponent } from '../../app.component';
 
 @Component({
@@ -17,6 +19,8 @@ export class HomeComponent implements OnChanges {
   products: IProduct[];
   featuredProducts: IProduct[];
   actionProducts: IProduct[];
+  filter: Filter = new Filter();
+  sorter: Sorter = new Sorter();
   showProducts() {
     this.productsObservable
       .subscribe((data: IProduct[]) => {
