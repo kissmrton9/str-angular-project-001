@@ -18,7 +18,8 @@ import { ProductPropertyFilterPipe } from './pipe/product-property-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './page/admin/admin.component';
 import { DataEditorComponent } from './common/data-editor/data-editor.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { SearcbarComponent } from './common/searcbar/searcbar.component'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FormsModule } from '@angular/forms'
     Cat03Component,
     ProductPropertyFilterPipe,
     AdminComponent,
-    DataEditorComponent
+    DataEditorComponent,
+    SearcbarComponent
   ],
   imports: [
     BrowserModule,

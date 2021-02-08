@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/model/product';
 import { ProductServiceService } from '../../service/product-service.service';
 import { Observable } from 'rxjs';
+import { Filter } from 'src/app/model/filter';
+import { Sorter } from 'src/app/model/sorter';
 import { map } from 'rxjs/operators';
-//import { FilterPipe } from '../../pipe/filter.pipe';
+//import { AppComponent } from '../../app.component';
 
 // type IbooleanFilter = {
 //   key: string;
@@ -20,6 +22,12 @@ export class HomeComponent implements OnChanges {
 
   constructor(private productService: ProductServiceService) { }
   productsObservable: Observable<IProduct[]> = this.productService.getAll();
+  products: IProduct[];
+  // featuredProducts: IProduct[];
+  // actionProducts: IProduct[];
+  filter: Filter = new Filter();
+  sorter: Sorter = new Sorter();
+
   featuredProductsObservable: Observable<IProduct[]> = this.productsObservable.pipe(
     map(products => products.filter(product => product.featured))
   );
