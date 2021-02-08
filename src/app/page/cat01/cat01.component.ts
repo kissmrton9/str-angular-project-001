@@ -25,23 +25,15 @@ export class Cat01Component implements OnChanges {
   constructor(private productService: ProductServiceService) { }
   productsObservable: Observable<IProduct[]> = this.productService.getAll()
     .pipe(map(products => products.filter(product => product.catId === 0)));
-  products: IProduct[];
-  featuredProducts: IProduct[];
-  actionProducts: IProduct[];
-  showProducts() {
-    this.productsObservable
-      .subscribe((data: IProduct[]) => {
-        //console.log(data);
-        this.products = data;
-        this.featuredProducts = data.filter(value => value.featured);
-        this.actionProducts = data.filter(value => value.discount);
-        //console.log(this.featuredProducts);
-      });
-    //console.log(this.products);
-  }
-  done = this.showProducts();
+  // products: IProduct[];
+  // featuredProducts: IProduct[];
+  // actionProducts: IProduct[];
+
+
+  featuredProductsObservable: Observable<IProduct[]> = this.productsObservable.pipe(
+    map(products => products.filter(product => product.featured))
+  );
   ngOnChanges(): void {
-    this.showProducts();
   }
 
   // export class Cat01Component {

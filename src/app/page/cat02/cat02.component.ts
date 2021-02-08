@@ -11,20 +11,19 @@ import { ProductServiceService } from '../../service/product-service.service';
   templateUrl: './cat02.component.html',
   styleUrls: ['./cat02.component.scss']
 })
-export class Cat02Component implements OnChanges {
+export class Cat02Component {
 
   // products: IProduct[] = list.filter(value => value.catId === 1);
   // featuredProducts: IProduct[] = list.filter(value => value.catId === 1 && value.featured);
   // constructor() { }
   filter: Filter = new Filter();
   sorter: Sorter = new Sorter();
-  // export class Cat02Component {
 
-  //   constructor(private productService: ProductServiceService){}
-  //   productsObservable: Observable<IProduct[]> = this.productService.getAll().pipe(
-  //     map(products => products.filter(product => product.catId === 1))
-  //   );
-  //   featuredProductsObservable: Observable<IProduct[]> = this.productsObservable.pipe(
-  //     map(products => products.filter(product => product.featured))
-  //   );
+  constructor(private productService: ProductServiceService) { }
+  productsObservable: Observable<IProduct[]> = this.productService.getAll().pipe(
+    map(products => products.filter(product => product.catId === 1))
+  );
+  featuredProductsObservable: Observable<IProduct[]> = this.productsObservable.pipe(
+    map(products => products.filter(product => product.featured))
+  );
 }
