@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IProduct } from 'src/app/model/product';
+import { IProduct, Product } from 'src/app/model/product';
 //import { list as products, ProductServiceService } from 'src/app/service/product-service.service';
 
 @Component({
@@ -12,20 +12,16 @@ export class ProductListComponent implements OnInit {
   @Input() products: IProduct[] = [];
   phrase: string = '';
   phrase2: string = '';
-  keys: string[];
+  keys: string[] = Object.keys(new Product({}));
   selectedKeyForSearch: string = 'name';
   sortKey: string = 'name';
   sortAscend: boolean = true;
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.keys = Object.keys(this.products[0]);
-  }
-
+  ngOnInit(): void { }
 
   onChangePhrase(event: Event): void {
-
     this.phrase = (event.target as HTMLInputElement).value;
   }
   onChangePhrase2(event: Event): void {
@@ -35,10 +31,10 @@ export class ProductListComponent implements OnInit {
 
   selectKeyForSearch(key: string): void {
     this.selectedKeyForSearch = key;
-    if (this.selectedKeyForSearch !== 'price') {
+//    if (this.selectedKeyForSearch !== 'price') {
       this.phrase = '';
       this.phrase2 = '';
-    }
+//    }
   }
 
   selectColumnForSort(column: string): void {
