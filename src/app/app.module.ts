@@ -37,7 +37,7 @@ import { ProductPropertyFilterPipe } from './pipe/product-property-filter.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ProductServiceService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
