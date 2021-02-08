@@ -29,7 +29,7 @@ export class ProductServiceService {
     }
   }
   add(product: Partial<IProduct>): Observable<IProduct> {
-    console.log(this.jsonUrl);
+    delete product.id;
     return this.http.post<IProduct>(this.jsonUrl, product);
   }
   remove(product: number | string | Partial<IProduct>): Observable<IProduct> {
