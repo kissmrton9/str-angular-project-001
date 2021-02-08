@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IProduct } from 'src/app/model/product';
-import { ConfigService } from 'src/app/service/config.service';
-//import { list as products, ProductServiceService } from 'src/app/service/product-service.service';
-import { Product } from '../../model/product';
+import { IProduct, Product } from 'src/app/model/product';
 
 @Component({
   selector: 'app-product-list',
@@ -14,19 +11,16 @@ export class ProductListComponent implements OnInit {
   @Input() products: IProduct[] = [];
   phrase: string = '';
   phrase2: string = '';
-  keys: string[] = this.config.tableCols.map(item => item.key);
+  keys: string[] = Object.keys(new Product({}));
   selectedKeyForSearch: string = 'name';
   sortKey: string = 'name';
   sortAscend: boolean = true;
 
   constructor(private config: ConfigService,) { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 
   onChangePhrase(event: Event): void {
-
     this.phrase = (event.target as HTMLInputElement).value;
   }
   onChangePhrase2(event: Event): void {
@@ -36,10 +30,10 @@ export class ProductListComponent implements OnInit {
 
   selectKeyForSearch(key: string): void {
     this.selectedKeyForSearch = key;
-    if (this.selectedKeyForSearch !== 'price') {
+//    if (this.selectedKeyForSearch !== 'price') {
       this.phrase = '';
       this.phrase2 = '';
-    }
+//    }
   }
 
   selectColumnForSort(column: string): void {

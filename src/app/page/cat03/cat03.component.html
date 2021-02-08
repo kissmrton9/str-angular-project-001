@@ -1,5 +1,5 @@
 <h3 class="mt-5">Popular movies</h3>
-<app-product-pager *ngIf="featuredProducts.length!=0" [products]="featuredProducts"></app-product-pager>
+<app-product-pager [products]="featuredProductsObservable | async"></app-product-pager>
 
 <h3 class="mt-5">Movies</h3>
 <app-product-list [products]="productsObservable | async"></app-product-list>

@@ -13,8 +13,8 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a *ngFor="let key of keys| productPropertyFilter:'search'" class="dropdown-item" [routerLink]=""
                         (click)="selectKeyForSearch(key);filterName.value = '';from.value = '';to.value = ''
-                        ">{{
-                        key }}</a>
+                        ">{{key }}
+                    </a>
                 </div>
             </div>
         </div>

@@ -47,9 +47,20 @@ export class Product implements IProduct {
     discount: boolean;
 
     constructor(product: Partial<IProduct>) {
-        Object.keys(product).forEach(property => {
-            this[property] = product[property];
-        });
+        this.id = typeof product.id === 'number' ? product.id : -1;
+        this.catId = typeof product.catId === 'number' ? product.catId : -1;
+        this.name = typeof product.name === 'string' ? product.name : '';
+        this.description = typeof product.description === 'string' ? product.description : '';
+        this.image = typeof product.image === 'string' ? product.image : '';
+        this.price = typeof product.price === 'number' ? product.price : 0; // | 'typeof notActive';
+        this.stock = typeof product.stock === 'number' ? product.stock : 0;
+        this.featured = typeof product.featured === 'boolean' ? product.featured : false;
+        this.active = typeof product.active === 'boolean' ? product.active : false;
+        this.discount = typeof product.discount === 'boolean' ? product.discount : false;
+    
+    // Object.keys(product).forEach(property => {
+    //         this[property] = product[property];
+    //     });
     }
 
 
