@@ -44,5 +44,13 @@ export class Cat01Component implements OnChanges {
     this.showProducts();
   }
 
+  // export class Cat01Component {
 
+  // constructor(private productService: ProductServiceService){}
+  // productsObservable: Observable<IProduct[]> = this.productService.getAll().pipe(
+  //   map(products => products.filter(product => product.catId === 0))
+  // );
+  // featuredProductsObservable: Observable<IProduct[]> = this.productsObservable.pipe(
+  //   map(products => products.filter(product => product.featured))
+  // );
 }

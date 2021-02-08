@@ -18,26 +18,13 @@ export class Cat02Component implements OnChanges {
   // constructor() { }
   filter: Filter = new Filter();
   sorter: Sorter = new Sorter();
+  // export class Cat02Component {
 
-  constructor(private productService: ProductServiceService) { }
-  productsObservable: Observable<IProduct[]> = this.productService.getAll()
-    .pipe(map(products => products.filter(product => product.catId === 1)));
-  products: IProduct[];
-  featuredProducts: IProduct[];
-  actionProducts: IProduct[];
-  showProducts() {
-    this.productsObservable
-      .subscribe((data: IProduct[]) => {
-        //console.log(data);
-        this.products = data;
-        this.featuredProducts = data.filter(value => value.featured);
-        this.actionProducts = data.filter(value => value.discount);
-        //console.log(this.featuredProducts);
-      });
-    //console.log(this.products);
-  }
-  done = this.showProducts();
-  ngOnChanges(): void {
-    this.showProducts();
-  }
+  //   constructor(private productService: ProductServiceService){}
+  //   productsObservable: Observable<IProduct[]> = this.productService.getAll().pipe(
+  //     map(products => products.filter(product => product.catId === 1))
+  //   );
+  //   featuredProductsObservable: Observable<IProduct[]> = this.productsObservable.pipe(
+  //     map(products => products.filter(product => product.featured))
+  //   );
 }

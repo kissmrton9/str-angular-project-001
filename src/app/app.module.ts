@@ -8,7 +8,7 @@ import { Cat01Component } from './page/cat01/cat01.component';
 import { Cat02Component } from './page/cat02/cat02.component';
 import { Cat03Component } from './page/cat03/cat03.component';
 import { HomeComponent } from './page/home/home.component';
-import { ProductServiceService } from 'src/app/service/product-service.service';
+//import { ProductServiceService } from 'src/app/service/product-service.service';
 import { ProductCardComponent } from './common/product-card/product-card.component';
 import { ProductPagerComponent } from './common/product-pager/product-pager.component';
 import { ProductListComponent } from './common/product-list/product-list.component';
@@ -45,7 +45,7 @@ import { SearcbarComponent } from './common/searcbar/searcbar.component'
     HttpClientModule,
     FormsModule
   ],
-  providers: [ProductServiceService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
