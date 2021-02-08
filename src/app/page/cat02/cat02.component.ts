@@ -5,11 +5,13 @@ import { ProductServiceService } from '../../service/product-service.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-cat02',
   templateUrl: './cat02.component.html',
   styleUrls: ['./cat02.component.scss']
 })
+
 export class Cat02Component {
 
   constructor(private productService: ProductServiceService){}

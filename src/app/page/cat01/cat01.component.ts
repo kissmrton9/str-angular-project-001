@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './cat01.component.html',
   styleUrls: ['./cat01.component.scss']
 })
+
 export class Cat01Component {
 
   constructor(private productService: ProductServiceService){}

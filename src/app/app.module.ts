@@ -16,6 +16,10 @@ import { ProductListComponent } from './common/product-list/product-list.compone
 import { FilterPipe } from './pipe/filter.pipe';
 import { SorterPipe } from './pipe/sorter.pipe';
 import { ProductPropertyFilterPipe } from './pipe/product-property-filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminComponent } from './page/admin/admin.component';
+import { DataEditorComponent } from './common/data-editor/data-editor.component';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -30,12 +34,15 @@ import { ProductPropertyFilterPipe } from './pipe/product-property-filter.pipe';
     FilterPipe,
     SorterPipe,
     Cat03Component,
-    ProductPropertyFilterPipe
+    ProductPropertyFilterPipe,
+    AdminComponent,
+    DataEditorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

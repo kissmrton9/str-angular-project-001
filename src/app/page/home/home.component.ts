@@ -18,8 +18,9 @@ import { map } from 'rxjs/operators';
 })
 export class HomeComponent implements OnChanges {
 
-  constructor(private productService: ProductServiceService){}
+  constructor(private productService: ProductServiceService) { }
   productsObservable: Observable<IProduct[]> = this.productService.getAll();
+
   featuredProductsObservable: Observable<IProduct[]> = this.productsObservable.pipe(
     map(products => products.filter(product => product.featured))
   );
@@ -43,6 +44,7 @@ export class HomeComponent implements OnChanges {
   //done = this.showProducts();
   //selectDiscount: IbooleanFilter = {key:'discount',type: 'boolean'};
   //selectFeautured: IbooleanFilter = {key:'featured',type: 'boolean'};
+
   ngOnChanges(): void {
     //this.showProducts();
   }

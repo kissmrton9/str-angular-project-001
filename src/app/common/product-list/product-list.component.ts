@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct, Product } from 'src/app/model/product';
-//import { list as products, ProductServiceService } from 'src/app/service/product-service.service';
 
 @Component({
   selector: 'app-product-list',
@@ -17,7 +16,7 @@ export class ProductListComponent implements OnInit {
   sortKey: string = 'name';
   sortAscend: boolean = true;
 
-  constructor() { }
+  constructor(private config: ConfigService,) { }
 
   ngOnInit(): void { }
 
