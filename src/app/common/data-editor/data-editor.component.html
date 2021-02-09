@@ -11,8 +11,17 @@
                     <tr
                         *ngFor="let product of products | filter:filter.phrase:filter.selectedKeyForSearch:filter.phrase2 | sorter:sorter.sortKey:sorter.sortAscend">
                         <td *ngFor=" let col of cols">
-                            <input *ngIf="col.editable" [(ngModel)]="product[col.key]" type="text" class="form-control">
-                            <span *ngIf="!col.editable"> {{product[col.key]}}</span>
+
+                            <div *ngIf="col.inputType==='text'">
+                                <input *ngIf="col.editable" [(ngModel)]="product[col.key]" type="text"
+                                    class="form-control">
+                                <span *ngIf="!col.editable"> {{product[col.key]}}</span>
+                            </div>
+                            <div *ngIf="col.inputType==='checkbox'">
+                                <input *ngIf="col.editable" [(ngModel)]="product[col.key]" type="checkbox"
+                                    class="form-control">
+                                <span *ngIf="!col.editable"> {{product[col.key]}}</span>
+                            </div>
                         </td>
                         <td>
                             <div class="btn-group">
