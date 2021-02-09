@@ -35,6 +35,11 @@ export class DataEditorComponent {
     private config: ConfigService,
   ) { }
 
+  onCreate(product: Product): void {
+    this.productService.add(product).subscribe(
+      addedProduct => console.log(addedProduct)
+    );
+  }
   onUpdate(product: Product): void {
     this.productService.update(product).subscribe(
       updatedProduct => console.log(updatedProduct)
