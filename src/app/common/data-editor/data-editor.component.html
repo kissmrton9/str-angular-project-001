@@ -9,7 +9,7 @@
                 </thead>
                 <tbody>
                     <tr
-                        *ngFor="let product of products | filter:filter.phrase:filter.selectedKeyForSearch:filter.phrase2 | sorter:sorter.sortKey:sorter.sortAscend">
+                        *ngFor="let product of products | filter:filter.phrase:filter.selectedKeyForSearch:filter.phrase2 | sorter:sorter.sortKey:sorter.sortAscend trackBy: trackItem">
                         <td *ngFor=" let col of cols">
 
                             <div *ngIf="col.inputType==='text'">
