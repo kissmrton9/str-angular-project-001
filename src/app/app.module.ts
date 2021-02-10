@@ -20,22 +20,33 @@ import { AdminComponent } from './page/admin/admin.component';
 import { DataEditorComponent } from './common/data-editor/data-editor.component';
 import { FormsModule } from '@angular/forms';
 import { SearcbarComponent } from './common/searcbar/searcbar.component'
+// import { Routes } from '@angular/router';
+
+// const appRoutes: Routes = [
+//   {path: "", component:HomeComponent},
+//   {path: "admin", component:AdminComponent},
+//   {path: "home", component:HomeComponent},
+//   {path: "cat01", component:Cat01Component},
+//   {path: "cat02", component:Cat02Component},
+//   {path: "cat03", component:Cat03Component},
+//   {path: "**", component:HomeComponent},
+// ]
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
+    AdminComponent,
     Cat01Component,
     Cat02Component,
+    Cat03Component,
     HomeComponent,
     ProductCardComponent,
     ProductPagerComponent,
     ProductListComponent,
     FilterPipe,
     SorterPipe,
-    Cat03Component,
     ProductPropertyFilterPipe,
-    AdminComponent,
     DataEditorComponent,
     SearcbarComponent
   ],
