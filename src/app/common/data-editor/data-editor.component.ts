@@ -33,18 +33,13 @@ export class DataEditorComponent{
   constructor(
     private productService: ProductServiceService,
     private config: ConfigService,
-//    private ref: ChangeDetectorRef
+//    private ref: ChangeDetectorRef // this is not necessary
   ){}
   
   trackItem (product: IProduct) {
     return product.id;
   }
   
-  // ngOnChanges(){
-  //   if(this.products && this.products.length >= 50){
-  //     this.ref.detach();
-  //   }
-  // }
 
   maxId(): number{
     return Math.max(...this.products.map(product => product.id));
@@ -52,20 +47,19 @@ export class DataEditorComponent{
 
   onCreate(product: Product): void {
     const baseid = product.id;
-    const newid = this.maxId() + 1;
+    const newid = this.maxId() + 1; //give new id
     const num = this.products.indexOf(product);
     this.productService.add(product).subscribe(
       () => console.log('Created product ' + newid + 'based on' + baseid)
     );
     // Changing this.products to make angular *ngFor refresh the list
-    product.id = newid; //give new id
+    product.id = newid;
     this.productService.getOne(baseid).subscribe(
       (p) => {
         this.products[num] = p;
         this.products.splice(num,0,product);
       }
     );
-//    this.ref.detectChanges();
   }
   onUpdate(product: Product): void {
     this.productService.update(product).subscribe(
@@ -77,15 +71,6 @@ export class DataEditorComponent{
     this.productService.remove(product).subscribe(
       () => console.log('Deleting product:' + product.id)
     );
-    // This doesn't work, angular doesn't refresh:
-    //
     this.products.splice(this.products.indexOf(product),1);
-//    this.ref.detectChanges();
-    //
-    // But this works:
-    //let list: IProduct[] = this.products;
-    //list.splice(id,1);
-    //this.products = list;
   }
-
 }
