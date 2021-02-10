@@ -31,13 +31,13 @@ export class ConfigService {
 
 
   tableCols: ITableCol[] = [
-    { key: 'id', text: 'Id', editable: false, inputType: 'input' },
-    { key: 'catId', text: 'Category Id', editable: true, inputType: 'input' },
-    { key: 'name', text: 'Name', editable: true, inputType: 'input' },
-    { key: 'description', text: 'Description', editable: true, inputType: 'input' },
-    { key: 'image', text: 'Image', editable: true, inputType: 'input' },
-    { key: 'price', text: 'Price', editable: true, inputType: 'input' },
-    { key: 'stock', text: 'Stock', editable: true, inputType: 'input' },
+    { key: 'id', text: 'Id', editable: false, inputType: 'text' },
+    { key: 'catId', text: 'Category Id', editable: true, inputType: 'text' },
+    { key: 'name', text: 'Name', editable: true, inputType: 'text' },
+    { key: 'description', text: 'Description', editable: true, inputType: 'text' },
+    { key: 'image', text: 'Image', editable: true, inputType: 'text' },
+    { key: 'price', text: 'Price', editable: true, inputType: 'text' },
+    { key: 'stock', text: 'Stock', editable: true, inputType: 'text' },
     { key: 'featured', text: 'Featured', editable: true, inputType: 'checkbox' },
     { key: 'active', text: 'Active', editable: true, inputType: 'checkbox' },
     { key: 'discount', text: 'Discount', editable: true, inputType: 'checkbox' }
