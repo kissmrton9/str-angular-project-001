@@ -12,6 +12,8 @@ export class SearcbarComponent implements OnInit {
 
   @Input() filter: Filter;
   @Input() sorter: Sorter;
+  @Input() usedFilterType: string | undefined;
+  @Input() usedSortType: string | undefined;
   // @Output() filterChange = new EventEmitter<Filter>();
   // @Output() sorterChange = new EventEmitter<Sorter>();
 

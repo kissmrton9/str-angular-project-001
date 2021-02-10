@@ -10,7 +10,7 @@
                     {{ filter.selectedKeyForSearch }}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a *ngFor="let key of keys| productPropertyFilter:'search'" class="dropdown-item" [routerLink]=""
+                    <a *ngFor="let key of keys| productPropertyFilter:usedFilterType" class="dropdown-item" [routerLink]=""
                         (click)="selectKeyForSearch(key);filterName.value = '';from.value = '';to.value = ''
                         ">{{
                         key }}</a>
@@ -39,7 +39,7 @@
                     {{ sorter.sortKey }}
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-sort">
-                    <a *ngFor="let key of keys | productPropertyFilter:'order'" class="dropdown-item" [routerLink]=""
+                    <a *ngFor="let key of keys | productPropertyFilter:usedSortType" class="dropdown-item" [routerLink]=""
                         (click)="selectColumnForSort(key)">{{ key }}</a>
                 </div>
             </div>

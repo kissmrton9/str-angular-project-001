@@ -6,6 +6,6 @@
 
 <h3 class="mt-5">Movies</h3>
 
-<app-searcbar [(filter)]="filter" [(sorter)]="sorter"></app-searcbar>
+<app-searcbar [(filter)]="filter" [(sorter)]="sorter" [usedFilterType]="'search'" [usedSortType]="'order'"></app-searcbar>
 
 <app-product-list [products]="productsObservable | async" [filter]="filter" [sorter]="sorter"></app-product-list>
