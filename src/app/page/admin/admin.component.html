@@ -1,3 +1,3 @@
-<app-searcbar [(filter)]="filter" [(sorter)]="sorter"></app-searcbar>
+<app-searcbar [(filter)]="filter" [(sorter)]="sorter" [usedFilterType]="'admin'" [usedSortType]="'admin'"></app-searcbar>
 
 <app-data-editor [products]="productsObservable | async" [filter]="filter" [sorter]="sorter"></app-data-editor>
