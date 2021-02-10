@@ -17,6 +17,11 @@ export class ProductPropertyFilterPipe implements PipeTransform {
       case 'order':
         return properties.filter(item => this.config.orderByProperties.includes(item));
 
+      case 'admin':
+        return properties.filter(item => true);
+
+      default:
+        return properties;
     }
   }
 
