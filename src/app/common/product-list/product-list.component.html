@@ -1,34 +1,11 @@
 <!-- <p>product-list works!</p> -->
-<div>
-    <div class="container mb-3">
+
+<div class="d-flex flex-column mt-3">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
-                <p>Keresés itt:</p>
-            </div>
-            <div class="col-2">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ selectedKeyForSearch }}
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a *ngFor="let key of keys" class="dropdown-item" href="#" (click)="selectKeyForSearch(key)">{{
-                            key }}</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-8">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" (keyup)="onChangePhrase($event)">
-            </div>
-        </div>
-    </div>
-    <div class="d-flex flex-column">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-2 offset-lg-1 ml-lg-1"
-                    *ngFor="let product of products | filter:phrase:selectedKeyForSearch">
-                    <app-product-card [product]="product"></app-product-card>
-                </div>
+            <div class="col-12 col-md-6 col-lg-2 mx-auto mw-100 p-0 ml-lg-1 overflow-hidden"
+                *ngFor="let product of products | filter:filter.phrase:filter.selectedKeyForSearch:filter.phrase2 | sorter:sorter.sortKey:sorter.sortAscend">
+                <app-product-card [product]="product"></app-product-card>
             </div>
         </div>
     </div>

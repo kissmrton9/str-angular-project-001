@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th *ngFor="let col of cols">{{ col.text }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let product of products | filter:filter.phrase:filter.selectedKeyForSearch:filter.phrase2 | sorter:sorter.sortKey:sorter.sortAscend trackBy: trackItem">
+                        <td *ngFor=" let col of cols">
+
+                            <div *ngIf="col.inputType==='text'">
+                                <input *ngIf="col.editable" [(ngModel)]="product[col.key]" type="text"
+                                    class="form-control">
+                                <span *ngIf="!col.editable"> {{product[col.key]}}</span>
+                            </div>
+                            <div *ngIf="col.inputType==='checkbox'">
+                                <input *ngIf="col.editable" [(ngModel)]="product[col.key]" type="checkbox"
+                                    class="form-control">
+                                <span *ngIf="!col.editable"> {{product[col.key]}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-success" (click)="onCreate(product)">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                                <button class="btn btn-info" (click)="onUpdate(product)">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+                                <button class="btn btn-danger" (click)="onDelete(product)">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

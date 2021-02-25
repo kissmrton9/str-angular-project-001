@@ -1,13 +1,17 @@
+//export const notActive: string = 'jelenleg nem kapható';
 export interface IProduct {
     id: number;
     catId: number;
     name: string;
     description: string;
     image: string;
-    price: number;
+    price: number; // | 'typeof notActive';
     stock: number;
     featured: boolean;
     active: boolean;
+    discount: boolean;
+
+    [others: string]: any;
 
     // getId(): string;
     // getCatId(): string;
@@ -30,22 +34,36 @@ export interface IProduct {
     // setActive(value: boolean): void;
 }
 
-export class Product implements IProduct{
+export class Product implements IProduct {
     id: number;
     catId: number;
     name: string;
     description: string;
     image: string;
-    price: number;
+    price: number; // | 'typeof notActive';
     stock: number;
     featured: boolean;
     active: boolean;
+    discount: boolean;
 
-    constructor(product: Partial<IProduct>){
-        Object.keys(product).forEach(property => {
-            this[property] = product[property];
-        });
+    constructor(product: Partial<IProduct>) {
+        this.id = typeof product.id === 'number' ? product.id : -1;
+        this.catId = typeof product.catId === 'number' ? product.catId : -1;
+        this.name = typeof product.name === 'string' ? product.name : '';
+        this.description = typeof product.description === 'string' ? product.description : '';
+        this.image = typeof product.image === 'string' ? product.image : '';
+        this.price = typeof product.price === 'number' ? product.price : 0; // | 'typeof notActive';
+        this.stock = typeof product.stock === 'number' ? product.stock : 0;
+        this.featured = typeof product.featured === 'boolean' ? product.featured : false;
+        this.active = typeof product.active === 'boolean' ? product.active : false;
+        this.discount = typeof product.discount === 'boolean' ? product.discount : false;
+    
+    // Object.keys(product).forEach(property => {
+    //         this[property] = product[property];
+    //     });
     }
+
+
     // getId(): string{
     //     return(this.id);
     // };

@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "run-json-server": "json-server --watch ./src/data/products.json",
+    "prestart": "npm run run-json-server &",
     "start": "ng serve -o",
     "build": "ng build",
     "test": "ng test",

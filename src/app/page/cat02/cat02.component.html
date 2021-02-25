@@ -1,2 +1,7 @@
-<p>cat02 works!</p>
-<app-product-pager [products]="products"></app-product-pager>
+<h3 class="mt-5">Popular movies</h3>
+<app-product-pager [products]="featuredProductsObservable | async"></app-product-pager>
+
+<h3 class="mt-5">Movies</h3>
+<app-searcbar [(filter)]="filter" [(sorter)]="sorter" [usedFilterType]="'search'" [usedSortType]="'order'"></app-searcbar>
+
+<app-product-list [products]="productsObservable | async" [filter]="filter" [sorter]="sorter"></app-product-list>

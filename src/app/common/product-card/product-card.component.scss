@@ -1,0 +1,13 @@
+.card * {
+    background-color: seashell;
+}
+.card.active * {
+    background-color: rgb(66, 209, 209);
+}
+.discount {
+    color: red;
+}
+
+.card-container {
+    padding: 0.5rem;
+}

@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Filter } from 'src/app/model/filter';
 import { IProduct } from 'src/app/model/product';
+import { Sorter } from 'src/app/model/sorter';
+import { ConfigService } from 'src/app/service/config.service';
 //import { list as products, ProductServiceService } from 'src/app/service/product-service.service';
+import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-product-list',
@@ -10,22 +14,13 @@ import { IProduct } from 'src/app/model/product';
 export class ProductListComponent implements OnInit {
 
   @Input() products: IProduct[] = [];
-  phrase: string = '';
-  keys: string[];
-  selectedKeyForSearch: string = 'name';
+  @Input() filter: Filter;
+  @Input() sorter: Sorter;
+
 
   constructor() { }
 
   ngOnInit(): void {
-    this.keys = Object.keys(this.products[0]);
   }
 
-
-  onChangePhrase(event: Event): void {
-    this.phrase = (event.target as HTMLInputElement).value;
-  }
-
-  selectKeyForSearch(key: string): void {
-    this.selectedKeyForSearch = key;
-  }
 }

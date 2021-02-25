@@ -1,17 +1,20 @@
-<div class="card">
-  <img src="assets/img/{{ product.image }}" class="card-img-top" alt="Kép erről a termékről: {{ product.name }}">
-  <div class="card-body">
-    <h5 class="card-title">Név: {{ product.name }}</h5>
-    <p class="card-text">Leírás: {{ product.description }}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Készlet: {{ product.stock }} darab</li>
-    <li class="list-group-item">Ár: {{ product.price }} Ft</li>
-  </ul>
-  <!--     
+<div class="card-container h-100 d-flex">
+  <div class="card" [class.active]="product.active">
+    <img src="assets/img/boritok/{{ category }}/{{ product.image }}" class="card-img-top"
+      alt="Cover image of movie titled {{ product.name }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name }}</h5>
+      <p class="card-text mt-auto">{{ product.description }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{ availability }} </li>
+      <li class="list-group-item" [class.discount]="product.discount">{{ product.price }} &euro;</li>
+    </ul>
+    <!--     
     <div class="card-body">
       <a href="#" class="card-link">Card link</a>
       <a href="#" class="card-link">Another link</a>
     </div>
  -->
+  </div>
 </div>
